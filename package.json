@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@vonage/server-sdk": "^3.2.0",
+    "messagebird": "^4.0.1",
+    "twilio": "^4.9.0"
+  }
+}
