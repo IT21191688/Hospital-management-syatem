@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const cron = require('node-cron');
 
 //import .env
 require("dotenv").config();
@@ -45,6 +46,9 @@ db.once('open',()=>{
 const appoinmentRouter = require("./routes/appoinments.js");
 app.use("/appoinment", appoinmentRouter);
 
+const sheduleEmail = require("./routes/sheduleemail.js");
+app.use("/sheduleEmail", sheduleEmail);
+
 
 const labAppoinmentRouter = require("./routes/labappoinments.js");
 app.use("/Appoinment_slip", express.static("Appoinment_slip"));
@@ -61,3 +65,4 @@ app.use("/doctor", doctorRouter);
 app.listen(PORT, () => {
     console.log(`Server is up and running on port ${PORT}`);
 })
+

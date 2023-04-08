@@ -63,6 +63,7 @@ export default function ReadAppoinment() {
     const filteredReports = appoinments.filter((rep) => {
         return rep.nic.toLowerCase().includes(filter.toLowerCase());
     })
+
     const filteredReportslab = labAppoinments.filter((rep) => {
         return rep.nic.toLowerCase().includes(filter.toLowerCase());
     })
@@ -114,8 +115,9 @@ export default function ReadAppoinment() {
                                 Nic:{labappoinment.nic}&nbsp;&nbsp;&nbsp;&nbsp;
                                 Patient Name:{labappoinment.first_name + " " + labappoinment.last_name}&nbsp;&nbsp;&nbsp;&nbsp;
                                 Age:{labappoinment.age}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Doctor Name:{labappoinment.labTest}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Doctor Category:{labappoinment.doctor_category}&nbsp;&nbsp;
+                                Lab Test:{labappoinment.labTest}&nbsp;&nbsp;&nbsp;&nbsp;
+                                Lab Name:&nbsp;Medixo Lab
+
 
                             </div>
                             <div class="card-body">

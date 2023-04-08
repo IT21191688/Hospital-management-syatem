@@ -22,6 +22,10 @@ const DoctorScema = new Schema({
         type: String,
         required: true
 
+    },
+    doctor_email: {
+        type: String,
+        required: true
     }
 
 
