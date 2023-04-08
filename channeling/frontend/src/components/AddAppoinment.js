@@ -19,7 +19,7 @@ export default function AddAppoinment() {
     const [date, setDate] = useState("");
     const [appNo, setAppoinmentNo] = useState("")
     const [appTime, setTime] = useState("");
-    const status = "not";
+    const status = "pending";
 
 
     const navigate = useNavigate();

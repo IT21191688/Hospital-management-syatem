@@ -1,6 +1,9 @@
 //import router pacage
 const router = require("express").Router();
 
+//import node corn
+const cron = require('node-cron');
+
 //import nodemailer
 const nodemailer = require('nodemailer');
 
@@ -250,6 +253,7 @@ router.route("/getReportDetails/:dname").get(function (req, res) {
 
     })
 })
+
 
 
 

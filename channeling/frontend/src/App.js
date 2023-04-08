@@ -14,6 +14,7 @@ import AppoinementsAdmin from "./components/AppoinmntsAdmin";
 import PrintDoAppoinmentResipt from "./components/PrintDoAppoinmentResipt";
 import PrintLabAppoinmentResipt from "./components/PrintLabAppoinmentResipt";
 import GenerateReports from "./components/GenerateReports";
+import SearchAppoinment from "./components/SearchAppoinment";
 import GenerateDoctorReport from "./components/GenerateDoctorReport";
 import GenerateLabTestReport from "./components/GenerateLabTestReport";
 import AdminDashbord from "./components/AdminDashbord";
@@ -55,6 +56,7 @@ function App() {
           <Route exact path="/deleteAppoinment/:id" element={<DeleteAppoinment />} />
           <Route exact path="/printAppoinment/:id" element={<PrintDoAppoinmentResipt />} />
           <Route exact path="/generateDoctorReport/:dname" element={<GenerateDoctorReport />} />
+          <Route exact path="/SearchAppoinment/:nic" element={<SearchAppoinment />} />
 
           <Route exact path="/backLabResipt" element={<ReadLabAppoinment />} />
           <Route exact path="/backDocResipt" element={<ReadAppoinment />} />
