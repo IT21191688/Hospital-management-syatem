@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, Navigate, NavLink, props } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 
 export default function ReadAppoinment() {
@@ -9,6 +10,9 @@ export default function ReadAppoinment() {
     //session json with tocken
     const [appoinments, setAppoinments] = useState([]);
     const [channeling, setChanneling] = useState([]);
+
+    const navigate = useNavigate();
+
 
     useEffect(function () {
 
@@ -74,9 +78,9 @@ export default function ReadAppoinment() {
         <div className="container-md bg-light">
             <h1 className="text-info">Doctor Appoinments</h1>
 
-            <div class="row bg-info text-white d-flex justify-content-center">
+            <div class="row text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "150px", marginLeft: "0.2px" }}>
 
-                <div class="row">
+                <div class="row mt-4">
                     <div className="form-group col-md-3 mt-3 mt-md-0">
                         <label for="name"><b>Doctor</b></label><br />
                         <select className="form-control" onChange={filterDoctor}>
@@ -96,8 +100,8 @@ export default function ReadAppoinment() {
                     </div>
 
                     <div className="form-group col-md-3 mt-3 mt-md-0">
-                        <br></br>
-                        <button type="button" class="btn btn btn-dark"> <Link to="/generateReports" className="nav-link">Generate charts</Link></button>
+                        <br />
+                        <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
                     </div>
 
                 </div>
@@ -109,7 +113,7 @@ export default function ReadAppoinment() {
                 <thead>
                     <tr>
                         <th scope="col">Doctor</th>
-                        <th scope="col">Patient Name & Age</th>
+                        <th scope="col">Patient Name</th>
                         <th scope="col">NIC</th>
                         <th scope="col">Contact Details</th>
                         <th scope="col">Date & Time</th>
@@ -117,7 +121,7 @@ export default function ReadAppoinment() {
                         <th scope="col">Status</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
-                        <th scope="col" className="tableTd">Resipt</th>
+                        <th scope="col" className="pr-4">Recipt</th>
                     </tr>
 
                 </thead>
@@ -126,15 +130,15 @@ export default function ReadAppoinment() {
 
                         <tr>
                             <td>{appoinment.doctor_category + " " + appoinment.doctor_name}</td>
-                            <td>{appoinment.first_name + " " + appoinment.last_name + " " + "(" + appoinment.age + ")"}</td>
+                            <td>{appoinment.first_name + " " + appoinment.last_name}</td>
                             <td>{appoinment.nic}</td>
                             <td>{appoinment.email + " " + appoinment.telephone}</td>
                             <td>{appoinment.date + " " + appoinment.appTime}</td>
                             <td>{appoinment.appNo}</td>
                             <td>{appoinment.status}</td>
-                            <td><a href={'/updateAppoinment/' + appoinment._id}><button class="btn btn-primary btn-sm">Update</button></a></td>
-                            <td><a href={'/deleteAppoinment/' + appoinment._id}><button class="btn btn-primary btn-sm">Delete</button></a></td>
-                            <td><a href={'/printAppoinment/' + appoinment._id}><button class="btn btn-primary btn-sm">Print</button></a></td>
+                            <td><a href={'/updateAppoinment/' + appoinment._id}><button class="btn btn-sm text-white" style={{ background: "#26CDD1", width: "100px" }}>Update</button></a></td>
+                            <td><a href={'/deleteAppoinment/' + appoinment._id}><button class="btn btn-sm text-white" style={{ background: "#E53D3D", width: "100px" }}>Delete</button></a></td>
+                            <td><a href={'/printAppoinment/' + appoinment._id}><button class="btn btn-sm text-white" style={{ background: "#2F4FAA", width: "100px" }}>Print</button></a></td>
                         </tr>
 
                     ))}

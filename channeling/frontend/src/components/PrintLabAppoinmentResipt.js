@@ -73,7 +73,7 @@ export default function PrintDoAppoinmentResipt() {
                 </header>
                 <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
                     <div className="company-details-header row d-flex justify-content-center mt-3">
-                        <img className="company-logo" alt="logo" src="siteImages/logo.png" />
+                        <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
                         <label><h2>Medixo E-Health Care Center (PVT) LTD</h2></label>
                     </div>
                     <div className="company-details-container">

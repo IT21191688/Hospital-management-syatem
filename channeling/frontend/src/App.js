@@ -34,7 +34,6 @@ function App() {
       <Router>
 
         <Header />
-
         <Routes>
 
           <Route exact path="/appoinment" element={<Appoinements />} />
