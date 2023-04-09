@@ -146,12 +146,6 @@ const sheduledEmail = async function () {
             }
         });
 
-
-
-        console.log(doc.doctor_name + " Have " + success + " Appoinments " + unsuccess + " unsuccess " + pending + " Pending " + cancel + " cancel");
-
-
-
     }
 
 

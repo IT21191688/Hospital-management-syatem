@@ -21,7 +21,7 @@ export default function AddLabAppoinment() {
     const [appNo, setAppoinmentNo] = useState("")
     const [appTime, setTime] = useState("");
     const [labTest, setLabTestType] = useState("");
-    const status = "not";
+    const status = "pending";
 
 
     function handleImage(e) {
@@ -123,6 +123,18 @@ export default function AddLabAppoinment() {
         var i = 1;
         date = date + "T00:00:00.000Z"
 
+        if (appoinmentDetails.length == 0) {
+
+            var t;
+            i = 1;
+            t = "09: 00AM"
+            setTime(t);
+            setAppoinmentNo(i);
+
+
+
+        }
+
         for (var j = 0; j <= appoinmentDetails.length; j++) {
 
             var labTname = appoinmentDetails[j].labTest;
@@ -133,6 +145,7 @@ export default function AddLabAppoinment() {
             if (labTest === labTname) {
 
                 if (appdate === date) {
+
                     i = i + 1;
 
                 }
