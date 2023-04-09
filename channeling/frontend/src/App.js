@@ -26,14 +26,18 @@ import Home from "./components/Home";
 
 
 function App() {
+
+  const userRole = "user";
   return (
 
 
     <div className="App">
 
+
       <Router>
 
         <Header />
+
         <Routes>
 
           <Route exact path="/appoinment" element={<Appoinements />} />
@@ -60,7 +64,6 @@ function App() {
           <Route exact path="/backLabResipt" element={<ReadLabAppoinment />} />
           <Route exact path="/backDocResipt" element={<ReadAppoinment />} />
           <Route exact path="/appoinmentHome" element={<Appoinements />} />
-
 
 
         </Routes>

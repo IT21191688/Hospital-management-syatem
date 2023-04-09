@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, NavLink, props } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function ReadLabAppoinment() {
@@ -9,6 +9,11 @@ export default function ReadLabAppoinment() {
     //session json with tocken
     const [labAppoinments, setLabAppoinment] = useState([]);
     const [date, setLabAppoinmentDate] = useState("");
+
+    const [testType, setTestType] = useState("");
+    const [testDate, setTestDate] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(function () {
 
@@ -42,10 +47,7 @@ export default function ReadLabAppoinment() {
     function handleFilterChange(e) {
         setFilter(e.target.value);
     }
-    const filteredReports = labAppoinments.filter((rep) => {
-        return rep.nic.toLowerCase().includes(filter.toLowerCase());
 
-    })
 
 
     const [src, setSrc] = useState([]);
@@ -57,12 +59,27 @@ export default function ReadLabAppoinment() {
     }
 
 
+    function filterDate(e) {
+        setTestDate(e.target.value);
+    }
+
+    //filtering doctor
+    function filterType(e) {
+        setTestType(e.target.value);
+    }
+
+    const filteredReports = labAppoinments.filter((rep) => {
+        return rep.labTest.toLowerCase().includes(testType.toLowerCase()) & rep.nic.toLowerCase().includes(filter.toLowerCase()) & rep.date.toLowerCase().includes(testDate.toLowerCase());
+    })
+
+
+
     return (
 
         <div >
             <h1>All LabAppoinments</h1>
 
-            <h3>{dateString}</h3>
+
 
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -84,7 +101,44 @@ export default function ReadLabAppoinment() {
                 </div>
             </div>
 
-            <input type="text" className="search form-control col-md-3 mt-3 mt-md-0 float-right" placeholder="Search by NIC" onChange={handleFilterChange} /><br></br>
+
+            <div class="row text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "150px", marginLeft: "0.2px" }}>
+
+
+                <div class="row mt-4">
+                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                        <label for="name"><b>Test Type</b></label><br />
+
+                        <select className="form-control" onChange={e => setTestType(e.target.value)} required>
+                            <option key={"Creatinine"} value={"Creatinine"}>Creatinine</option>
+                            <option key={"CRP"} value={"CRP"}>CRP</option>
+                            <option key={"Electrolytes"} value={"Electrolytes"}>Electrolytes</option>
+                            <option key={"ESR"} value={"ESR"}>ESR</option>
+                            <option key={"FastingBloodSugar"} value={"FastingBloodSugar"}>Fasting Blood Sugar</option>
+                            <option key={"FullBloodCount"} value={"FullBloodCount"}>Full Blood Count</option>
+                            <option key={"UrineFR"} value={"UrineFR"}>Urine FR</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                        <label for="name"><b>Date</b></label><br></br>
+                        <input className="form-control" type="date" onChange={filterDate} />
+                    </div>
+                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                        <label for="name"><b>Search</b></label><br></br>
+                        <input className="form-control search" type="text" placeholder="Search by NIC" onChange={handleFilterChange} />
+                    </div>
+
+                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                        <br />
+                        <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
+                        <h3 className="">{dateString}</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
 
 
 
