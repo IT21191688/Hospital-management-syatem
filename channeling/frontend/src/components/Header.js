@@ -18,6 +18,9 @@ export default function Header() {
                     <li class="nav-item">
                         <Link to="/appoinmentAdmin" className="nav-link">Appoinment Admin</Link>
                     </li>
+                    <li class="nav-item">
+                        <Link to="/admindashboard" className="nav-link">Appoinment Admin</Link>
+                    </li>
 
                 </ul>
             </div>
