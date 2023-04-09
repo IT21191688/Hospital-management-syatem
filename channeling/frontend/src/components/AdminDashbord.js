@@ -15,7 +15,7 @@ export default function AdminDashbord() {
                     <li>
                         <a href="#">
                             <i className='bx bx-user'></i>
-                            <span className="links_name">Manage Users</span>
+                            <span className="links_name"><Link to="/appoinmentAdmin">Appoinment Admin</Link></span>
                         </a>
                     </li>
                     <li>

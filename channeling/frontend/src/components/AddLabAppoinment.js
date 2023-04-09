@@ -8,8 +8,6 @@ export default function AddLabAppoinment() {
 
     const navigate = useNavigate();
 
-
-
     const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
     const [age, setAge] = useState("");
@@ -48,8 +46,6 @@ export default function AddLabAppoinment() {
     //should pass event
     function btnClick(e) {
 
-
-
         e.preventDefault();
 
         const validate = validateForm();
@@ -86,7 +82,6 @@ export default function AddLabAppoinment() {
         }
 
 
-
     }
 
     function AssignTime(e) {
@@ -104,9 +99,7 @@ export default function AddLabAppoinment() {
             axios.get("http://localhost:8050/labappoinment/readlabAppoinment").then(function (res) {
 
                 console.log(res.data);
-
                 setAppoinmentDetails(res.data);
-
 
             }).catch(function (err) {
                 alert("data not fech" + err);
@@ -131,16 +124,12 @@ export default function AddLabAppoinment() {
             setTime(t);
             setAppoinmentNo(i);
 
-
-
         }
 
         for (var j = 0; j <= appoinmentDetails.length; j++) {
 
             var labTname = appoinmentDetails[j].labTest;
             var appdate = appoinmentDetails[j].date;
-
-
 
             if (labTest === labTname) {
 
@@ -315,22 +304,24 @@ export default function AddLabAppoinment() {
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Doctor Appoinment Success</h5>
+
+                                    <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                    <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Success</b></h5>
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="rounded border border-success">
-                                        <h2 className="text-primary">Comfirmation E-mail send</h2><br />
+                                    <div class="rounded border border-success pb-2">
+                                        <h2 className="text-primary">Comfirmation E-mail send<br />With Details</h2>
                                         <h4 className="text-success">Please Check Your Email</h4>
                                         <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" onClick={() => navigate("/appoinmentHome")} data-dismiss="modal">OK</button>
+                                    <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/appoinmentHome")} data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
@@ -369,11 +360,13 @@ export default function AddLabAppoinment() {
                 </div>
 
                 <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
+
                 <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenterUnsucces"></button>
 
 
-                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
-                    <br /><br />
+                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}><br />
+
+                    <h3 className="text-primary"><b>Make A Lab Test Appoinments</b></h3>
 
                     <div class="row">
 
@@ -417,7 +410,7 @@ export default function AddLabAppoinment() {
                     <div class="row">
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
-                            <label for="name"><b>date</b></label>
+                            <label for="name"><b>Date</b></label>
                             <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
                         </div><br />
 
@@ -463,9 +456,8 @@ export default function AddLabAppoinment() {
                     </div><br />
                 </form><br /><br />
 
-            </section>
+            </section >
         </div >
-
 
     );
 }

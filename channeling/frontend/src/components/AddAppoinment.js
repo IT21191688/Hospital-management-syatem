@@ -326,22 +326,23 @@ export default function AddAppoinment() {
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Doctor Appoinment Success</h5>
+                                    <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                    <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Success</b></h5>
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="rounded border border-success">
-                                        <h2 className="text-primary">Comfirmation E-mail send</h2><br />
+                                    <div class="rounded border border-success pb-2 pt-2">
+                                        <h5 className="text-primary">Comfirmation E-mail send<br />With Details</h5>
                                         <h4 className="text-success">Please Check Your Email</h4>
                                         <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
                                     </div>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" onClick={() => navigate("/appoinmentHome")} data-dismiss="modal">OK</button>
+                                    <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/appoinmentHome")} data-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
@@ -351,8 +352,12 @@ export default function AddAppoinment() {
 
                 <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
 
-                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
+
+
+                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.9' }}>
                     <br />
+
+                    <h3 className="text-dark"><b>Make A Doctor Appoinments</b></h3>
 
                     <div class="row">
                         <div className="form-group col-md-6 mt-3 mt-md-0">
@@ -424,8 +429,8 @@ export default function AddAppoinment() {
                     </div >
 
                     <div class="row d-flex justify-content-center">
-                        <button type="submit" className="btn btn-danger col-md-4 mt-0 mt-md-0 mr-5 " onClick={() => navigate("/appoinment")}>Cancel</button>
-                        <button type="submit" className="btn btn-success col-md-4 mt-0 mt-md-0 " onClick={btnClick}>Submit</button>
+                        <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 " onClick={() => navigate("/appoinment")}>Cancel</button>
+                        <button type="submit" className="btn col-md-3 mt-0 mt-md-0 " style={{ background: "#4A75D3" }} onClick={btnClick}>Submit</button>
 
                     </div><br />
                 </form ><br /><br />

@@ -100,9 +100,9 @@ export default function ReadLabAppoinment() {
                         <th scope="col">Lab Test</th>
                         <th scope="col">Number</th>
                         <th scope="col">Status</th>
-                        <th scope="col" className="tableTd">Update</th>
-                        <th scope="col" className="tableTd">Delete</th>
-                        <th scope="col" className="tableTd">Recipt</th>
+                        <th scope="col" className="pr-3">Update</th>
+                        <th scope="col" className="pr-3">Delete</th>
+                        <th scope="col" className="pr-3">Recipt</th>
                     </tr>
                 </thead>
                 <tbody>

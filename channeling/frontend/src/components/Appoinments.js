@@ -9,7 +9,7 @@ export default function Appoinements() {
     return (
 
         <div>
-            <section id="hero" class="d-flex align-items-center bg-info">
+            <section id="hero" class="d-flex align-items-center" style={{ background: "#26CCD1" }}>
 
                 <div class="container">
                     <div class="row">
@@ -37,7 +37,7 @@ export default function Appoinements() {
 
             </section >
 
-            <section id="hero" class="d-flex align-items-center bg-secondary">
+            <section id="hero" class="d-flex align-items-center" style={{ background: "#a9edef" }}>
 
                 <div class="container">
                     <div class="row">
