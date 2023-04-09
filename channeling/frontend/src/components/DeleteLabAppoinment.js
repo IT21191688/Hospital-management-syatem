@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useRef } from "react";
-import { useParams } from 'react-router-dom';
-
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function DeleteLabAppoinment() {
 
     const { id } = useParams();
     const log = useRef(true);
+    const navigate = useNavigate();
 
 
     useEffect(function () {
@@ -18,6 +18,8 @@ export default function DeleteLabAppoinment() {
                 axios.delete("http://localhost:8050/labappoinment/deletelabAppoinment/" + id).then(function (res) {
                     log.current = false;
                     alert("Delete Successfull");
+                    navigate("/readLabAppoinment")
+                    window.location.reload()
 
                 }).catch(function (err) {
                     alert("delete Fail");
@@ -33,7 +35,6 @@ export default function DeleteLabAppoinment() {
         }
 
     }, []);
-
 
 
 

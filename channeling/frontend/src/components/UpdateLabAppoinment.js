@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function UpdateLabAppoinment() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
@@ -77,6 +78,8 @@ export default function UpdateLabAppoinment() {
         axios.put("http://localhost:8050/labappoinment/updatelabAppoinment/" + id, updateLabAppoinment).then(function () {
 
             alert("Status Updated");
+            navigate("/readLabAppoinment")
+            window.location.reload()
 
 
         }).catch(function () {

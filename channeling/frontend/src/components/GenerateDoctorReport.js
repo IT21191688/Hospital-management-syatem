@@ -12,7 +12,7 @@ export default function PrintDoAppoinmentResipt() {
 
     const [success, setSuccess] = useState("");
     const [cancel, setCancel] = useState("");
-    const [futher, setFuther] = useState("");
+    const [pending, setFuther] = useState("");
     const [unsuccess, setUnsuccess] = useState("");
 
     const [reportDate, setDate] = useState("");
@@ -50,12 +50,11 @@ export default function PrintDoAppoinmentResipt() {
     // Sample data
     const data = [
         { name: 'Success', students: success },
-        { name: 'Cancel', students: cancel },
-        { name: 'Fether', students: futher },
-        { name: 'Unsuccess', students: unsuccess }
+        { name: 'Unsuccess', students: unsuccess },
+        { name: 'Pending', students: pending },
+        { name: 'Cancel', students: cancel }
     ];
 
-    // const modDate = date.split("T00:00:00.000Z");
 
 
 
@@ -70,18 +69,13 @@ export default function PrintDoAppoinmentResipt() {
 
         let success = 0;
         let unsuccess = 0;
-        let futher = 0;
+        let pending = 0;
         let cancel = 0;
 
 
         for (var j = 0; j <= appoinments.length; j++) {
 
-
-
-
             if (appoinments[j].doctor_name === dname) {
-
-                //alert(modToday);
 
                 if (appoinments[j].date === repModDate) {
 
@@ -92,25 +86,21 @@ export default function PrintDoAppoinmentResipt() {
                     else if (appoinments[j].status === "unsuccess") {
                         unsuccess++;
                     }
-                    else if (appoinments[j].status === "futher") {
-                        futher++;
+                    else if (appoinments[j].status === "pending") {
+                        pending++;
                     }
                     else {
 
                         cancel++;
                     }
 
-                    //alert(appoinments[j].date);
                 }
 
             }
 
-
-
-
             setCancel(cancel)
             setSuccess(success)
-            setFuther(futher)
+            setFuther(pending)
             setUnsuccess(unsuccess)
 
         }
@@ -122,34 +112,45 @@ export default function PrintDoAppoinmentResipt() {
 
     return (
 
-        <div>
-            <div>
-                <div className="form-group col-md-4 mt-3 mt-md-0">
-                    <label for="name"><b>date</b></label>
-                    <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                </div><br />
 
-            </div>
-            <div>
-                <label class="text-danger"><h1>Doctor Name: {dname}</h1></label><br></br>
-                <label class="text-success"><h2>Appoinment Details Chart</h2></label>
-                <div class="d-flex justify-content-center col">
-                    <BarChart width={600} height={500} data={data}>
-                        <Bar dataKey="students" fill={colors[0]} />
-                        <CartesianGrid stroke="#ccc" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                    </BarChart><br></br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div className="">
+                        <br></br>
+                        <h3>Doctor Name: {dname}</h3><br></br>
+                        <div className="form-group col-md-6">
+                            <label for="name "><b>date</b></label>
+                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                        </div><br />
 
+                        <div>
+                            <h3>Appoinment Count</h3><br>
+                            </br>
+                            <h5>Success&nbsp;:{success}</h5>
+                            <h5>Unsucces:{unsuccess}</h5>
+                            <h5>Pending&nbsp;:{pending}</h5>
+                            <h5>cancel&nbsp;:{cancel}</h5>
+                        </div>
 
-
+                    </div>
                 </div>
-            </div>
-            <div className="">
-                <button type="button" class="btn btn-outline-primary" onClick={AssignTime}>Generate Today Chart</button>
-            </div>
-
-        </div>
+                <div class="col">
+                    <div class="">
+                        <h2>Appoinment Details Chart</h2><br />
+                        <BarChart width={600} height={400} data={data}>
+                            <Bar dataKey="students" fill={colors[0]} />
+                            <CartesianGrid stroke="#ccc" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                        </BarChart><br />
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                    </div>
+                </div>
+            </div >
+        </div >
 
 
     );

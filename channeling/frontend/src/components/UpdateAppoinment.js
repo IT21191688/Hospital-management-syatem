@@ -76,6 +76,8 @@ export default function UpdateAppoinment() {
         axios.put("http://localhost:8050/appoinment/updateAppoinment/" + id, updateAppoinment).then(function () {
 
             alert("Status Updated");
+            navigate("/readAppoinment");
+            window.location.reload();
 
 
         }).catch(function () {

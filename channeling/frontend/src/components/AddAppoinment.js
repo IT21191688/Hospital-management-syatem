@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-
-
 export default function AddAppoinment() {
 
     const [doctor_category, setDoctorCategory] = useState("");
@@ -126,6 +124,19 @@ export default function AddAppoinment() {
 
         var i = 1;
         date = date + "T00:00:00.000Z"
+
+
+        if (appoinmentDetails.length == 0) {
+
+            var t;
+            i = 1;
+            t = "09: 00AM"
+            setTime(t);
+            setAppoinmentNo(i);
+
+
+
+        }
 
         for (var j = 0; j <= appoinmentDetails.length; j++) {
 
