@@ -19,7 +19,7 @@ export default function Header() {
                         <Link to="/appoinmentAdmin" className="nav-link">Appoinment Admin</Link>
                     </li>
                     <li class="nav-item">
-                        <Link to="/admindashboard" className="nav-link">Appoinment Admin</Link>
+                        <Link to="/adminDashboard" className="nav-link">Admin</Link>
                     </li>
 
                 </ul>

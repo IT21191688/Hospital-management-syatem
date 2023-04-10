@@ -17,7 +17,7 @@ import GenerateReports from "./components/GenerateReports";
 import SearchAppoinment from "./components/SearchAppoinment";
 import GenerateDoctorReport from "./components/GenerateDoctorReport";
 import GenerateLabTestReport from "./components/GenerateLabTestReport";
-import AdminDashbord from "./components/AdminDashbord";
+import AdminDashboard from "./components/AdminDashboard";
 
 
 import './App.css'
@@ -61,10 +61,13 @@ function App() {
           <Route exact path="/generateDoctorReport/:dname" element={<GenerateDoctorReport />} />
           <Route exact path="/SearchAppoinment/:nic" element={<SearchAppoinment />} />
 
+
           <Route exact path="/backLabResipt" element={<ReadLabAppoinment />} />
           <Route exact path="/backDocResipt" element={<ReadAppoinment />} />
           <Route exact path="/appoinmentHome" element={<Appoinements />} />
 
+
+          <Route exact path="/adminDashboard" element={<AdminDashboard />} />
 
         </Routes>
 

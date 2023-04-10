@@ -149,7 +149,7 @@ export default function ReadLabAppoinment() {
                         <th scope="col">Patient Name</th>
                         <th scope="col">NiC</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">CV</th>
+                        <th scope="col">Img</th>
                         <th scope="col">Date & Time</th>
                         <th scope="col">Lab Test</th>
                         <th scope="col">Number</th>
@@ -165,7 +165,7 @@ export default function ReadLabAppoinment() {
 
 
                         <tr>
-                            <td>{labAppoinment.first_name + " " + labAppoinment.last_name + " " + "(" + labAppoinment.age + ")"}</td>
+                            <td>{labAppoinment.first_name + " " + labAppoinment.last_name}</td>
                             <td>{labAppoinment.nic}</td>
                             <td>{labAppoinment.email + " " + labAppoinment.telephone}</td>
                             <td><button type="button" data-toggle="modal" data-target="#exampleModalCenter">
@@ -187,9 +187,9 @@ export default function ReadLabAppoinment() {
                             <td className="tableTd">{labAppoinment.labTest}</td>
                             <td className="tableTd">{labAppoinment.appNo}</td>
                             <td className="tableTd">{labAppoinment.status}</td>
-                            <td className="tableTd"><a href={'/updateLabAppoinment/' + labAppoinment._id}><button class="btn btn-primary btn-sm">Update</button></a></td>
-                            <td className="tableTd"><a href={'/deleteLabAppoinment/' + labAppoinment._id}><button class="btn btn-primary btn-sm">Delete</button></a></td>
-                            <td><a href={'/printLabAppoinment/' + labAppoinment._id}><button class="btn btn-primary btn-sm">Print</button></a></td>
+                            <td className="tableTd"><a href={'/updateLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#26CDD1", width: "70px" }}>Update</button></a></td>
+                            <td className="tableTd"><a href={'/deleteLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#E53D3D", width: "70px" }}>Delete</button></a></td>
+                            <td><a href={'/printLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#2F4FAA", width: "70px" }}>Print</button></a></td>
 
                         </tr>
 
