@@ -6,7 +6,7 @@ const Doctor = require('../models/doctor');
 let Appoinment = require("../models/appoinment");
 const router = express.Router();
 
-cron.schedule('0 0 * * *', function () {
+cron.schedule('* * * * *', function () {
     console.log("Shedule Run");
     sheduledEmail();
 });
@@ -69,6 +69,8 @@ const sheduledEmail = async function () {
                 const AY = app.date.getFullYear();
                 const AM = app.date.getMonth();
                 const AD = app.date.getDate();
+
+                let AMD, ADD;
 
                 if (AM < 10) {
 

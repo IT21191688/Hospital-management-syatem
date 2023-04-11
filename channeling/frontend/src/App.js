@@ -27,7 +27,8 @@ import Home from "./components/Home";
 
 function App() {
 
-  const userRole = "user";
+
+
   return (
 
 

@@ -75,13 +75,15 @@ export default function ReadAppoinment() {
 
     return (
 
-        <div className="container-md bg-light">
-            <h1 className="text-info">Doctor Appoinments</h1>
+        <div className="container-md">
 
-            <div class="row text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "150px", marginLeft: "0.2px" }}>
 
-                <div class="row mt-4">
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+            <div class="text-white  " style={{ background: "#2F4FAA", height: "180px" }}>
+                <h1 className="text-success">Doctor Appoinments</h1>
+
+                <div class="row mt-4 justify-content-center">
+
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Doctor</b></label><br />
                         <select className="form-control" onChange={filterDoctor}>
                             {channeling.map(item => (
@@ -90,16 +92,16 @@ export default function ReadAppoinment() {
                         </select>
                     </div>
 
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Date</b></label><br></br>
                         <input className="form-control" type="date" onChange={filterDate} />
                     </div>
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Search</b></label><br></br>
                         <input className="form-control search" type="text" placeholder="Search by NIC" onChange={handleFilterChange} />
                     </div>
 
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
                         <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
                     </div>

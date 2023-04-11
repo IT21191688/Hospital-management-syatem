@@ -77,15 +77,13 @@ export default function ReadLabAppoinment() {
     return (
 
         <div >
-            <h1>All LabAppoinments</h1>
-
 
 
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Doctor Priscription</h5>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -95,18 +93,19 @@ export default function ReadLabAppoinment() {
                             <img id="modelImg" src={src} width="350px" height="300px" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="row text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "150px", marginLeft: "0.2px" }}>
+            <div class="text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "180px", marginLeft: "0.2px" }}>
 
-
-                <div class="row mt-4">
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                <h6 class="">{dateString}</h6>
+                <h1 class="text-success">All LabAppoinments</h1>
+                <div class="row mt-4 justify-content-center">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Test Type</b></label><br />
 
                         <select className="form-control" onChange={e => setTestType(e.target.value)} required>
@@ -120,19 +119,19 @@ export default function ReadLabAppoinment() {
                         </select>
                     </div>
 
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Date</b></label><br></br>
                         <input className="form-control" type="date" onChange={filterDate} />
                     </div>
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Search</b></label><br></br>
                         <input className="form-control search" type="text" placeholder="Search by NIC" onChange={handleFilterChange} />
                     </div>
 
-                    <div className="form-group col-md-3 mt-3 mt-md-0">
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
                         <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
-                        <h3 className="">{dateString}</h3>
+
                     </div>
 
                 </div>
@@ -187,9 +186,9 @@ export default function ReadLabAppoinment() {
                             <td className="tableTd">{labAppoinment.labTest}</td>
                             <td className="tableTd">{labAppoinment.appNo}</td>
                             <td className="tableTd">{labAppoinment.status}</td>
-                            <td className="tableTd"><a href={'/updateLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#26CDD1", width: "70px" }}>Update</button></a></td>
-                            <td className="tableTd"><a href={'/deleteLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#E53D3D", width: "70px" }}>Delete</button></a></td>
-                            <td><a href={'/printLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#2F4FAA", width: "70px" }}>Print</button></a></td>
+                            <td className="tableTd"><a href={'/updateLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#26CDD1", width: "100px" }}>Update</button></a></td>
+                            <td className="tableTd"><a href={'/deleteLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#E53D3D", width: "100px" }}>Delete</button></a></td>
+                            <td><a href={'/printLabAppoinment/' + labAppoinment._id}><button class="btn btn-sm text-white" style={{ background: "#2F4FAA", width: "100px" }}>Print</button></a></td>
 
                         </tr>
 

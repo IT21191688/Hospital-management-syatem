@@ -9,7 +9,7 @@ export default function AdminDashbord() {
 
 
     return (
-        <div>
+        <div style={{ background: "#b3b3b3" }}>
 
             <div className={Styles.navigatorHeader}>
                 <img src="siteImages/medlogo.png" className={Styles.dashlogo} />
