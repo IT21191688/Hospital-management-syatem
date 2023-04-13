@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Link, Navigate, NavLink, props } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 
 export default function ReadAppoinment() {
 
@@ -12,6 +12,8 @@ export default function ReadAppoinment() {
     const [labAppoinments, setLabAppoinment] = useState([]);
 
     const { nic } = useParams();
+
+    const navigate = useNavigate();
 
     useEffect(function () {
 
@@ -74,10 +76,8 @@ export default function ReadAppoinment() {
     return (
 
         <div className="container-md bg-light">
-            <div>
+            <section>
                 <h1 className="text-info">Doctor Appoinments</h1>
-
-
                 {filteredReports.map((appoinment) => (
 
                     <div class="container">
@@ -98,15 +98,11 @@ export default function ReadAppoinment() {
                         </div>
                     </div>
 
-
-
                 ))}
-            </div>
+            </section>
+            <section>
 
-            <div>
                 <h1 className="text-info">Lab Appoinments</h1>
-
-
                 {filteredReportslab.map((labappoinment) => (
 
                     <div class="container">
@@ -129,10 +125,14 @@ export default function ReadAppoinment() {
                     </div>
 
 
-
                 ))}
 
-            </div>
+
+            </section>
+
+            <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
+            </br><br>
+            </br>
 
         </div >
 

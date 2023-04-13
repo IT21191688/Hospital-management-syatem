@@ -8,6 +8,8 @@ export default function AddLabAppoinment() {
 
     const navigate = useNavigate();
 
+
+
     const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
     const [age, setAge] = useState("");
