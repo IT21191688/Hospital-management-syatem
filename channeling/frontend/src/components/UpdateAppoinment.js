@@ -53,6 +53,21 @@ export default function UpdateAppoinment() {
 
     }, []);
 
+
+    function successModel() {
+
+        const modelBtn = document.getElementById("model-btn")
+        modelBtn.click();
+
+    }
+
+    function unsuccessModel() {
+
+        const modelBtn = document.getElementById("model-btn-unsuccess")
+        modelBtn.click();
+
+    }
+
     function btnClick(e) {
 
         e.preventDefault();
@@ -76,14 +91,16 @@ export default function UpdateAppoinment() {
         axios.put("http://localhost:8050/appoinment/updateAppoinment/" + id, updateAppoinment).then(function () {
 
             alert("Status Updated");
-            navigate("/readAppoinment");
-            window.location.reload();
+            successModel();
+            //navigate("/readAppoinment");
+            //window.location.reload();
 
 
         }).catch(function () {
 
             alert(e.err)
             alert("Student Not Updated");
+            unsuccessModel();
 
         })
 
@@ -94,6 +111,68 @@ export default function UpdateAppoinment() {
 
 
         <div className="container">
+
+            <div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Update Success</b></h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="rounded border border-success pb-2 pt-2">
+                                    <h5 className="text-primary">Appoinment Details Updated.</h5>
+                                    <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/readAppoinment")} data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="modal fade" id="exampleModalCenter-un" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Update UnSuccess.</b></h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="rounded border border-success pb-2 pt-2">
+                                    <h5 className="text-primary">Appoinment Details Not Updated.</h5>
+                                    <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/readAppoinment")} data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
+            <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenter-un"></button>
+
+
             <h1>Update Appoinment Details</h1>
             <h4 className="text-info">Patient Name:&nbsp;{first_name + " " + last_name}</h4>
             <form className="create-form border border-info rounded p-3" style={{ backgroundColor: "#c1e9c2" }}>

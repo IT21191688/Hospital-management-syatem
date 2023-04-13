@@ -100,7 +100,7 @@ export default function ReadLabAppoinment() {
             </div>
 
 
-            <div class="text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "180px", marginLeft: "0.2px" }}>
+            <div class="text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "180px", overflow: "hidden" }}>
 
                 <h6 class="">{dateString}</h6>
                 <h1 class="text-success">All LabAppoinments</h1>

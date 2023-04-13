@@ -61,6 +61,7 @@ export default function AddAppoinment() {
             }).catch(function (err) {
 
                 alert(err);
+                unsuccessModel();
 
             })
 
@@ -116,6 +117,13 @@ export default function AddAppoinment() {
     function successModel() {
 
         const modelBtn = document.getElementById("model-btn")
+        modelBtn.click();
+
+    }
+
+    function unsuccessModel() {
+
+        const modelBtn = document.getElementById("model-btn-fail")
         modelBtn.click();
 
     }
@@ -350,8 +358,36 @@ export default function AddAppoinment() {
 
                 </div>
 
-                <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
+                <div>
+                    <div class="modal fade" id="exampleModalCenterFail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                    <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Unsuccess</b></h5>
 
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="rounded border border-success pb-2 pt-2">
+                                        <h5 className="text-primary">Please Try again With<br />Correct Details</h5>
+                                        <img src="siteImages/model-unsuccess.png" style={{ width: "50px" }} />
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/appoinmentHome")} data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
+                <button type="button" id="model-btn-fail" data-toggle="modal" data-target="#exampleModalCenterFail"></button>
 
 
                 <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.9' }}>

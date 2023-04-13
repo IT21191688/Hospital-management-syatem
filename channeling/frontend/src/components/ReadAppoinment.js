@@ -75,7 +75,7 @@ export default function ReadAppoinment() {
 
     return (
 
-        <div className="container-md">
+        <div className="container-md" style={{ overflow: "hidden" }}>
 
 
             <div class="text-white  " style={{ background: "#2F4FAA", height: "180px" }}>
