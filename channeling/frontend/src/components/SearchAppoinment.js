@@ -74,67 +74,71 @@ export default function ReadAppoinment() {
 
 
     return (
+        <div className="container-md" style={{ overflow: "hidden" }}>
 
-        <div className="container-md bg-light">
-            <section>
-                <h1 className="text-info">Doctor Appoinments</h1>
-                {filteredReports.map((appoinment) => (
+            <div className="bg-info row">
+                <section className="col-md-6">
+                    <h1 className="text-dark">Doctor Appoinments</h1>
+                    {filteredReports.map((appoinment) => (
 
-                    <div class="container">
-                        <div class="card text-center">
-                            <div class="row card-header pl-5">
-                                Nic:{appoinment.nic}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Patient Name:{appoinment.first_name + " " + appoinment.last_name}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Age:{appoinment.age}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Doctor Name:{appoinment.doctor_name}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Doctor Category:{appoinment.doctor_category}&nbsp;&nbsp;
+                        <div class="container" style={{ paddingBottom: "20px" }}>
+                            <div class="card text-center">
+                                <div class="row card-header pl-5">
+                                    Nic:{appoinment.nic}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Patient Name:{appoinment.first_name + " " + appoinment.last_name}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Age:{appoinment.age}&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                                    Doctor Name:{appoinment.doctor_name}&nbsp;&nbsp;&nbsp;
+                                    Doctor Category:{appoinment.doctor_category}&nbsp;&nbsp;
 
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-text">Appoinment Date:{appoinment.date}</h6>
-                                <h6 class="card-text">Appoinment Time:{appoinment.appTime}</h6>
-                                <h3 class="card-text">Appoinment Number:&nbsp;{appoinment.appNo}</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                ))}
-            </section>
-            <section>
-
-                <h1 className="text-info">Lab Appoinments</h1>
-                {filteredReportslab.map((labappoinment) => (
-
-                    <div class="container">
-                        <div class="card text-center">
-                            <div class="row card-header pl-5">
-                                Nic:{labappoinment.nic}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Patient Name:{labappoinment.first_name + " " + labappoinment.last_name}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Age:{labappoinment.age}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Lab Test:{labappoinment.labTest}&nbsp;&nbsp;&nbsp;&nbsp;
-                                Lab Name:&nbsp;Medixo Lab
-
-
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-text">Appoinment Date:{labappoinment.date}</h6>
-                                <h6 class="card-text">Appoinment Time:{labappoinment.appTime}</h6>
-                                <h3 class="card-text">Appoinment Number:&nbsp;{labappoinment.appNo}</h3>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-text">Appoinment Date:{appoinment.date}</h6>
+                                    <h6 class="card-text">Appoinment Time:{appoinment.appTime}</h6>
+                                    <h3 class="card-text">Appoinment Number:&nbsp;{appoinment.appNo}</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    ))}
+                </section>
+                <section className="col-md-6">
+
+                    <h1 className="text-dark">Lab Appoinments</h1>
+                    {filteredReportslab.map((labappoinment) => (
+
+                        <div class="container">
+                            <div class="card text-center">
+                                <div class="row card-header pl-5">
+                                    Nic:{labappoinment.nic}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Patient Name:{labappoinment.first_name + " " + labappoinment.last_name}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Age:{labappoinment.age}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Lab Test:{labappoinment.labTest}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Lab Name:&nbsp;Medixo Lab
 
 
-                ))}
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="card-text">Appoinment Date:{labappoinment.date}</h6>
+                                    <h6 class="card-text">Appoinment Time:{labappoinment.appTime}</h6>
+                                    <h3 class="card-text">Appoinment Number:&nbsp;{labappoinment.appNo}</h3>
+                                </div>
+                            </div>
+                        </div>
 
 
-            </section>
+                    ))}
 
-            <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
+
+                </section>
+
+
+            </div >
+            <br></br>
+            <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 justify-content-center " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
             </br><br>
             </br>
 
-        </div >
+        </div>
 
 
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
-
+import moment from "moment";
 
 
 export default function PrintDoAppoinmentResipt() {
@@ -16,6 +16,8 @@ export default function PrintDoAppoinmentResipt() {
     const [cancel, setCancel] = useState("");
     const [pending, setFuther] = useState("");
     const [unsuccess, setUnsuccess] = useState("");
+
+    const [reportType, setReportType] = useState("");
 
 
     const [reportDate, setDate] = useState("");
@@ -36,6 +38,7 @@ export default function PrintDoAppoinmentResipt() {
             })
         }
         getLabAppoinment();
+        setReportType("Daily");
 
 
 
@@ -72,28 +75,80 @@ export default function PrintDoAppoinmentResipt() {
 
         for (var j = 0; j <= labAppoinments.length; j++) {
 
-
+            const Montlydate = moment(labAppoinments[j].date).utc().format('YYYY-MM')
+            const Yearlydate = moment(labAppoinments[j].date).utc().format('YYYY')
 
             if (labAppoinments[j].labTest === labTestType) {
 
 
-                if (labAppoinments[j].date === repModDate) {
+                if (reportType === "Daily") {
+
+                    if (labAppoinments[j].date === repModDate) {
 
 
-                    if (labAppoinments[j].status === "success") {
-                        success++;
-                    }
-                    else if (labAppoinments[j].status === "unsuccess") {
-                        unsuccess++;
-                    }
-                    else if (labAppoinments[j].status === "pending") {
-                        pending++;
-                    }
-                    else {
+                        if (labAppoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (labAppoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (labAppoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
 
-                        cancel++;
+                            cancel++;
+                        }
+
                     }
 
+                }
+                else if (reportType === "Monthly") {
+                    const reportMonth = moment(repModDate).utc().format('YYYY-MM')
+
+                    if (Montlydate === reportMonth) {
+
+
+                        if (labAppoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (labAppoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (labAppoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
+
+                            cancel++;
+                        }
+
+                    }
+                }
+                else if (reportType === "Yearly") {
+
+
+                    const reportYear = moment(repModDate).utc().format('YYYY')
+
+
+                    if (Yearlydate === reportYear) {
+
+
+                        if (labAppoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (labAppoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (labAppoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
+
+                            cancel++;
+                        }
+
+                    }
                 }
 
 
@@ -115,14 +170,21 @@ export default function PrintDoAppoinmentResipt() {
             <div class="row">
                 <div class="col">
                     <div className="bg-success">
-                        <br></br>
                         <h2><b>Lab Appoinment Details Chart</b></h2><br />
                         <div className="form-group">
                             <center>
-                                <h3 className="text-primary">Date</h3><br /><br />
+                                <h3 className="text-primary">Date</h3><br />
                                 <input name="date" type="date" className="form-control  col-md-6" id="date" onChange={function (e) { setDate(e.target.value); }} required />
                             </center>
-                        </div><br />
+                        </div>
+                        <div className="form-group col-md-6 mt-3 mt-md-0">
+                            <label for="name"><b>Report Type</b></label>
+                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                <option key={"Daily"} value={"Daily"}>Daily</option>
+                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                            </select>
+                        </div>
 
                         <div>
                             <h3>Appoinment Count</h3><br>
