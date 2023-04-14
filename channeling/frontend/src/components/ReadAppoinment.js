@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, Navigate, NavLink, props } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 
 export default function ReadAppoinment() {
@@ -130,12 +131,13 @@ export default function ReadAppoinment() {
                 <tbody>
                     {filteredReports.map((appoinment) => (
 
+
                         <tr>
                             <td>{appoinment.doctor_category + " " + appoinment.doctor_name}</td>
                             <td>{appoinment.first_name + " " + appoinment.last_name}</td>
                             <td>{appoinment.nic}</td>
                             <td>{appoinment.email + " " + appoinment.telephone}</td>
-                            <td>{appoinment.date + " " + appoinment.appTime}</td>
+                            <td>{moment(appoinment.date).utc().format('YYYY-MM-DD') + " " + appoinment.appTime}</td>
                             <td>{appoinment.appNo}</td>
                             <td>{appoinment.status}</td>
                             <td><a href={'/updateAppoinment/' + appoinment._id}><button class="btn btn-sm text-white" style={{ background: "#26CDD1", width: "100px" }}>Update</button></a></td>

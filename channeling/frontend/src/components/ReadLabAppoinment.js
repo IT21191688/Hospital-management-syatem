@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import moment from "moment";
 
 
 export default function ReadLabAppoinment() {
@@ -182,7 +183,7 @@ export default function ReadLabAppoinment() {
                             </button>
 
                             </td>
-                            <td className="tableTd">{labAppoinment.date + " " + labAppoinment.appTime}</td>
+                            <td className="tableTd">{moment(labAppoinment.date).utc().format('YYYY-MM-DD') + " " + labAppoinment.appTime}</td>
                             <td className="tableTd">{labAppoinment.labTest}</td>
                             <td className="tableTd">{labAppoinment.appNo}</td>
                             <td className="tableTd">{labAppoinment.status}</td>
