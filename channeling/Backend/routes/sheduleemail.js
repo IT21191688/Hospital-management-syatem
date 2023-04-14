@@ -6,7 +6,7 @@ const Doctor = require('../models/doctor');
 let Appoinment = require("../models/appoinment");
 const router = express.Router();
 
-cron.schedule('* * * * *', function () {
+cron.schedule('0 0 * * *', function () {
     console.log("Shedule Run");
     sheduledEmail();
 });

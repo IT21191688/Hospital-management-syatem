@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
+import moment from "moment";
 
 
 
@@ -17,8 +18,10 @@ export default function PrintDoAppoinmentResipt() {
 
     const [reportDate, setDate] = useState("");
 
+    const [reportType, setReportType] = useState("");
 
     const [appoinments, setAppoinments] = useState([]);
+
 
 
     useEffect(function () {
@@ -27,8 +30,8 @@ export default function PrintDoAppoinmentResipt() {
             axios.get("http://localhost:8050/appoinment/readAppoinment").then(function (res) {
 
                 console.log(res.data);
-
                 setAppoinments(res.data);
+
 
                 console.log(res.data.file_path)
 
@@ -39,6 +42,8 @@ export default function PrintDoAppoinmentResipt() {
             })
         }
         getAppoinment();
+
+        setReportType("Daily");
 
 
 
@@ -75,26 +80,84 @@ export default function PrintDoAppoinmentResipt() {
 
         for (var j = 0; j <= appoinments.length; j++) {
 
+
+            const Montlydate = moment(appoinments[j].date).utc().format('YYYY-MM')
+            const Yearlydate = moment(appoinments[j].date).utc().format('YYYY')
+
             if (appoinments[j].doctor_name === dname) {
 
-                if (appoinments[j].date === repModDate) {
 
 
-                    if (appoinments[j].status === "success") {
-                        success++;
-                    }
-                    else if (appoinments[j].status === "unsuccess") {
-                        unsuccess++;
-                    }
-                    else if (appoinments[j].status === "pending") {
-                        pending++;
-                    }
-                    else {
+                if (reportType === "Daily") {
 
-                        cancel++;
+                    if (appoinments[j].date === repModDate) {
+
+
+                        if (appoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (appoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (appoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
+
+                            cancel++;
+                        }
+
+                    }
+                }
+                else if (reportType === "Monthly") {
+
+                    const reportMonth = moment(repModDate).utc().format('YYYY-MM')
+                    alert(reportMonth);
+
+                    if (Montlydate === reportMonth) {
+
+                        alert("year completerd");
+                        if (appoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (appoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (appoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
+
+                            cancel++;
+                        }
                     }
 
                 }
+                else if (reportType === "Yearly") {
+
+                    const reportYear = moment(repModDate).utc().format('YYYY')
+
+
+                    if (Yearlydate === reportYear) {
+
+                        alert("year completerd");
+                        if (appoinments[j].status === "success") {
+                            success++;
+                        }
+                        else if (appoinments[j].status === "unsuccess") {
+                            unsuccess++;
+                        }
+                        else if (appoinments[j].status === "pending") {
+                            pending++;
+                        }
+                        else {
+
+                            cancel++;
+                        }
+                    }
+
+                }
+
 
             }
 
@@ -123,6 +186,14 @@ export default function PrintDoAppoinmentResipt() {
                             <label for="name "><b>date</b></label>
                             <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
                         </div><br />
+                        <div className="form-group col-md-6 mt-3 mt-md-0">
+                            <label for="name"><b>Report Type</b></label>
+                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                <option key={"Daily"} value={"Daily"}>Daily</option>
+                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                            </select>
+                        </div>
 
                         <div>
                             <h3>Appoinment Count</h3><br>
