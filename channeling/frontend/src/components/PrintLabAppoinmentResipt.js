@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import ReactPrint from "react-to-print";
 import { useNavigate } from "react-router-dom";
+import logo from "../siteImages/medlogo.png";
 
 
 
@@ -73,7 +74,7 @@ export default function PrintDoAppoinmentResipt() {
                 </header>
                 <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
                     <div className="company-details-header row d-flex justify-content-center mt-3">
-                        <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                        <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
                         <label><h2>Medixo E-Health Care Center (PVT) LTD</h2></label>
                     </div>
                     <div className="company-details-container">

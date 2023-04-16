@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import logo from "../siteImages/medlogo.png";
+import successimg from "../siteImages/modal-success.png";
+import unsuccessimg from "../siteImages/model-unsuccess.png";
 
 
 
@@ -110,14 +113,14 @@ export default function UpdateAppoinment() {
 
 
 
-        <div className="container">
+        <div className="d-up-page">
 
             <div>
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
                                 <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Update Success</b></h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -127,7 +130,7 @@ export default function UpdateAppoinment() {
                             <div class="modal-body">
                                 <div class="rounded border border-success pb-2 pt-2">
                                     <h5 className="text-primary">Appoinment Details Updated.</h5>
-                                    <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
+                                    <img src={successimg} style={{ width: "50px" }} />
                                 </div>
 
                             </div>
@@ -146,7 +149,7 @@ export default function UpdateAppoinment() {
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
                                 <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Update UnSuccess.</b></h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -156,7 +159,7 @@ export default function UpdateAppoinment() {
                             <div class="modal-body">
                                 <div class="rounded border border-success pb-2 pt-2">
                                     <h5 className="text-primary">Appoinment Details Not Updated.</h5>
-                                    <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
+                                    <img src={unsuccessimg} style={{ width: "50px" }} />
                                 </div>
 
                             </div>
@@ -171,21 +174,21 @@ export default function UpdateAppoinment() {
 
             <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
             <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenter-un"></button>
-
-
-            <h1>Update Appoinment Details</h1>
-            <h4 className="text-info">Patient Name:&nbsp;{first_name + " " + last_name}</h4>
-            <form className="create-form border border-info rounded p-3" style={{ backgroundColor: "#c1e9c2" }}>
+            <div className="d-up-header">
+                <h1>Update Appoinment Details</h1>
+                <h4 className="text-success">Patient Name:&nbsp;{first_name + " " + last_name}</h4>
+            </div>
+            <form className="container create-form border border-info rounded p-3 d-up-form">
 
                 <div class="row">
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Doctor Category</label>
+                        <label for="name" className="font-weight-bold">Doctor Category</label>
                         <input placeholder='First Name' className="form-control" value={doctor_category} onChange={(e) => setDoctorCategory(e.target.value)} readOnly />
                     </div>
 
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Doctor name</label>
+                        <label for="name" className="font-weight-bold">Doctor name</label>
                         <input placeholder='Last Name' className="form-control" value={doctor_name} onChange={(e) => setDoctorName(e.target.value)} readOnly />
                     </div>
 
@@ -194,12 +197,12 @@ export default function UpdateAppoinment() {
                 <div class="row">
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">First Name</label>
+                        <label for="name" className="font-weight-bold">First Name</label>
                         <input placeholder='Age' className="form-control" value={first_name} onChange={(e) => setFirstName(e.target.value)} />
                     </div>
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Last name</label>
+                        <label for="name" className="font-weight-bold">Last name</label>
                         <input placeholder='E-mail' className="form-control" value={last_name} onChange={(e) => setLastName(e.target.value)} />
                     </div>
 
@@ -209,12 +212,12 @@ export default function UpdateAppoinment() {
                 <div class="row">
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Age</label>
+                        <label for="name" className="font-weight-bold">Age</label>
                         <input placeholder='NIC' className="form-control" value={age} onChange={(e) => setAge(e.target.value)} />
                     </div>
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Nic</label>
+                        <label for="name" className="font-weight-bold">Nic</label>
                         <input placeholder='Telephone' className="form-control" value={nic} onChange={(e) => setNic(e.target.value)} />
                     </div>
 
@@ -222,34 +225,34 @@ export default function UpdateAppoinment() {
 
                 <div class="row">
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Email</label>
+                        <label for="name" className="font-weight-bold">Email</label>
                         <input placeholder='Position' className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Telephone</label>
+                        <label for="name" className="font-weight-bold">Telephone</label>
                         <input placeholder='CV Data' className="form-control" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
                     </div>
                 </div>
 
                 <div class="row">
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Date</label>
+                        <label for="name" className="font-weight-bold">Date</label>
                         <input type="text" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} readOnly />
                     </div>
 
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Appoinment Number</label>
+                        <label for="name" className="font-weight-bold">Appoinment Number</label>
                         <input type="text" className="form-control" value={appNo} onChange={(e) => setStatus(e.target.value)} readOnly />
                     </div>
                 </div>
 
                 <div class="row">
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Time</label>
+                        <label for="name" className="font-weight-bold">Time</label>
                         <input type="text" className="form-control" value={appTime} onChange={(e) => setStatus(e.target.value)} readOnly />
                     </div>
                     <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Status</label>
+                        <label for="name" className="font-weight-bold">Status</label>
                         <input placeholder='Status' className="form-control" value={status} onChange={(e) => setStatus(e.target.value)} />
                     </div>
 
@@ -258,7 +261,7 @@ export default function UpdateAppoinment() {
                 <div class="row d-flex justify-content-center">
 
                     <button type="submit" className="btn btn-danger col-md-4 mt-0 mt-md-0 mr-5" onClick={() => navigate("/readAppoinment")}>Cancel</button>
-                    <button type="submit" className="btn btn-success col-md-4 mt-0 mt-md-0 " onClick={btnClick}>Update</button>
+                    <button type="submit" className="btn col-md-4 mt-0 mt-md-0 d-up-btn-update" onClick={btnClick}>Update</button>
 
                 </div><br />
 

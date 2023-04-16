@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import docAppoinmentpgBack from "../siteImages/docAppoinmentpgBack.jpg";
+import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpg";
+
 export default function AppoinementsAdmin() {
 
     const navigate = useNavigate();
@@ -16,7 +19,7 @@ export default function AppoinementsAdmin() {
                 <div class="card-deck" style={{ height: "400px" }}>
                     <a class="card bg-secondary" onClick={() => navigate("/ReadAppoinment")} style={{ cursor: "pointer" }}>
                         <div>
-                            <img class="card-img-top" height={"400px"} src="siteImages/docAppoinmentpgBack.jpg" alt="Card image cap" />
+                            <img class="card-img-top" height={"400px"} src={docAppoinmentpgBack} alt="Card image cap" />
                             <div class="card-body">
                                 <h5 class="card-title"><b>Doctor Appoinments</b></h5>
                             </div>
@@ -25,7 +28,7 @@ export default function AppoinementsAdmin() {
 
                     <a class="card bg-secondary" onClick={() => navigate("/ReadLabAppoinment")} style={{ cursor: "pointer" }}>
                         <div >
-                            <img class="card-img-top" height={"400px"} src="siteImages/labtestpgBack.jpg" alt="Card image cap" />
+                            <img class="card-img-top" height={"400px"} src={labAppoinmentpgBack} alt="Card image cap" />
                             <div class="card-body">
                                 <h5 class="card-title"><b>LabTest Appoinments</b></h5>
                             </div>

@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Navigate } from 'react-router-dom';
 import ReadAppoinment from "./components/ReadAppoinment";
 import DeleteAppoinment from "./components/DeleteAppoinment";
 import AddAppoinment from "./components/AddAppoinment";
@@ -22,7 +21,6 @@ import AdminDashboard from "./components/AdminDashboard";
 
 import './App.css'
 import './JavaSc'
-import Home from "./components/Home";
 
 
 function App() {

@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import logo from "../siteImages/medlogo.png";
+import successimg from "../siteImages/modal-success.png";
+import unsuccessimg from "../siteImages/model-unsuccess.png";
 
 
 
@@ -54,6 +57,22 @@ export default function UpdateLabAppoinment() {
 
     }, []);
 
+
+
+    function successModel() {
+
+        const modelBtn = document.getElementById("model-btn")
+        modelBtn.click();
+
+    }
+
+    function unsuccessModel() {
+
+        const modelBtn = document.getElementById("model-btn-unsuccess")
+        modelBtn.click();
+
+    }
+
     function btnClick(e) {
 
         e.preventDefault();
@@ -78,29 +97,84 @@ export default function UpdateLabAppoinment() {
         axios.put("http://localhost:8050/labappoinment/updatelabAppoinment/" + id, updateLabAppoinment).then(function () {
 
             alert("Status Updated");
-            navigate("/readLabAppoinment")
-            window.location.reload()
+            successModel();
 
 
         }).catch(function () {
 
             alert("Student Not Updated");
+            unsuccessModel();
 
         })
 
     }
 
-    function cancelBtn() {
-
-        window.location.href = '/readLabAppoinment';
-
-    }
 
     return (
 
 
 
         <div className="container">
+
+            <div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
+                                <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Update Success</b></h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="rounded border border-success pb-2 pt-2">
+                                    <h5 className="text-primary">Lab Appoinment Details Updated.</h5>
+                                    <img src={successimg} style={{ width: "50px" }} />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/readLabAppoinment")} data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="modal fade" id="exampleModalCenter-un" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
+                                <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Lab Appoinment Update UnSuccess.</b></h5>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="rounded border border-success pb-2 pt-2">
+                                    <h5 className="text-primary">Appoinment Details Not Updated.</h5>
+                                    <img src={unsuccessimg} style={{ width: "50px" }} />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block" onClick={() => navigate("/readLabAppoinment")} data-dismiss="modal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="model-btn" data-toggle="modal" data-target="#exampleModalCenter"></button>
+                <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenter-un"></button>
+
+            </div>
             <h1>Update Lab Test Appoinment Details</h1>
             <form className="create-form container" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
 
@@ -171,8 +245,8 @@ export default function UpdateLabAppoinment() {
                 </div>
                 <div class="row d-flex justify-content-center">
 
-                    <Link to="/readLabAppoinment" type="submit" className="btn btn-danger col-md-4 mt-0 mt-md-0 mr-4">Cancel</Link>
-                    <button type='submit' className="btn btn-success col-md-4 mt-0 mt-md-0" onClick={btnClick}>Submit</button>
+                    <button type="submit" className="btn btn-danger col-md-4 mt-0 mt-md-0 mr-5" onClick={() => navigate("/readLabAppoinment")}>Cancel</button>
+                    <button type="submit" className="btn col-md-4 mt-0 mt-md-0 d-up-btn-update" onClick={btnClick}>Update</button>
                 </div><br />
             </form>
         </div >
