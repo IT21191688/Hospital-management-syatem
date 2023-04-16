@@ -69,20 +69,22 @@ export default function PrintDoAppoinmentResipt() {
         <>
             <main className='background bg-warning' style={{ minHeight: "100vh" }}>
                 <header>
-                    <div className="input">
-                        <h1>Doctor Appoinment Recipt</h1>
+                    <div >
+                        <center>
+                            <h1 className="text-dark">Doctor Appoinment Recipt</h1>
+                        </center>
                     </div>
                 </header>
                 <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
-                    <div className="company-details-header row d-flex justify-content-center mt-3">
-                        <img className="company-logo" alt="logo" src="siteImages/logo.png" />
-                        <label><h2>Medixo E-Health Care Center (PVT) LTD</h2></label>
+                    <div className="row d-flex justify-content-center mt-3">
+                        <img alt="logo" src="siteImages/logo.png" />
+                        <label className="text-info"><h1>Medixo E-Health Care Center (PVT) LTD</h1></label>
                     </div>
-                    <div className="company-details-container">
-                        <div className="company-details">
-                            <label className="detailsedit">Address : </label><label>MEDIXO, No 257, Matale Road, Dambulla</label><br />
-                            <label className="detailsedit">Email : </label><label>Medxio123@gmail.com</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label className="detailsedit">Phone: </label><label>0662053122</label>
+                    <div className="row d-flex justify-content-center">
+                        <div className="font-st">
+                            <label className="font-weight-bold">Address : </label><label>MEDIXO, No 257, Matale Road, Dambulla</label><br />
+                            <label className="font-weight-bold">Email : </label><label>Medxio123@gmail.com</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label className="font-weight-bold">Phone: </label><label>0662053122</label>
                         </div>
                         <hr></hr>
                     </div>
@@ -151,13 +153,13 @@ export default function PrintDoAppoinmentResipt() {
                     <hr></hr>
 
                     <div className="footer">
-                        <label> This is a computer generated document. No signature is required.</label>
-                        <label>Print on : {`${new Date().toLocaleString()}`}</label>
+                        <label className="font-weight-bold"> This is a computer generated document. No signature is required.</label>
+                        <label className="font-weight-bold">Print on : {`${new Date().toLocaleString()}`}</label>
                     </div>
                     <br></br>
-                </section>
+                </section><br></br>
 
-                <div id="printbtn">
+                <div id="printbtn" className="row d-flex justify-content-center">
                     <ReactPrint trigger={() => <button className="btn btn-primary my-2 mx-1 my-sm-0">Print</button>} content={() => ref.current} />
                     <button className="btn btn-danger" onClick={() => navigate("/backDocResipt")}>Back</button>
                 </div>

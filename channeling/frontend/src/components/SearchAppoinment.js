@@ -74,7 +74,11 @@ export default function ReadAppoinment() {
 
 
     return (
-        <div className="container-md" style={{ overflow: "hidden" }}>
+        <section className="bg-success" style={{
+            overflow: "hidden",
+            width: "100%",
+            height: "100vh"
+        }}>
 
             <div className="bg-info row">
                 <section className="col-md-6">
@@ -99,7 +103,9 @@ export default function ReadAppoinment() {
                             </div>
                         </div>
 
+
                     ))}
+                    <br />
                 </section>
                 <section className="col-md-6">
 
@@ -128,17 +134,20 @@ export default function ReadAppoinment() {
 
                     ))}
 
-
+                    <br></br>
                 </section>
 
 
             </div >
             <br></br>
-            <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 justify-content-center " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
-            </br><br>
-            </br>
+            <div>
+                <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 justify-content-center " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
+                </br><br>
+                </br>
+            </div>
 
-        </div>
+
+        </section >
 
 
 
