@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import docAppImg from "../siteImages/docAppoinment.png"
+import labAppImg from "../siteImages/labAppoinment.png"
 
 export default function Appoinements() {
     const navigate = useNavigate();
@@ -31,7 +33,7 @@ export default function Appoinements() {
                                     <button type="button" class="btn btn-primary" onClick={() => navigate("/SearchAppoinment/" + nic)}>Search</button>
                                 </div>
                             </div>
-                            <img src="siteImages/docAppoinment.png" class="img-fluid animated" alt="" />
+                            <img src={docAppImg} class="img-fluid animated" alt="" />
                         </div>
                     </div>
                 </div>
@@ -49,7 +51,7 @@ export default function Appoinements() {
                             </div>
                         </div>
                         <div class="col-lg-6 order-2 order-lg-1 hero-img">
-                            <img src="siteImages/labAppoinment.png" class="img-fluid animated" alt="" />
+                            <img src={labAppImg} class="img-fluid animated" alt="" />
                         </div>
                     </div>
                 </div>

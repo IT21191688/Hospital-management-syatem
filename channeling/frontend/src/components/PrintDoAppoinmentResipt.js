@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import ReactPrint from "react-to-print";
 import { useNavigate } from "react-router-dom";
+import logo from "../siteImages/medlogo.png";
 
 
 
@@ -21,7 +22,7 @@ export default function PrintDoAppoinmentResipt() {
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [appNo, setAppNo] = useState("");
-    const [status, setStatus] = useState("");
+    // const [status, setStatus] = useState("");
 
     const modDate = date.split("T00:00:00.000Z");
 
@@ -48,7 +49,7 @@ export default function PrintDoAppoinmentResipt() {
                 setDate(res.data.date);
                 setAppNo(res.data.appNo);
                 setTime(res.data.appTime);
-                setStatus(res.data.status);
+                //setStatus(res.data.status);
 
 
 
@@ -77,7 +78,7 @@ export default function PrintDoAppoinmentResipt() {
                 </header>
                 <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
                     <div className="row d-flex justify-content-center mt-3">
-                        <img alt="logo" src="siteImages/logo.png" />
+                        <img alt="logo" src={logo} style={{ width: "100px" }} />
                         <label className="text-info"><h1>Medixo E-Health Care Center (PVT) LTD</h1></label>
                     </div>
                     <div className="row d-flex justify-content-center">

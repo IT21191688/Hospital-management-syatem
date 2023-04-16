@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logo from "../siteImages/medlogo.png";
+import successimg from "../siteImages/modal-success.png";
+import unsuccessimg from "../siteImages/model-unsuccess.png";
+import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpg";
 
 export default function AddLabAppoinment() {
 
@@ -292,7 +296,7 @@ export default function AddLabAppoinment() {
 
         <div>
             <section id="hero" class="d-flex align-items-center " style={{
-                backgroundImage: `url("siteImages/labtestpgBack.jpg")`,
+                backgroundImage: `url(${labAppoinmentpgBack})`,
                 backgroundRepeat: 'no-repeat',
                 minHeight: '100vh',
                 backgroundSize: 'cover',
@@ -307,7 +311,7 @@ export default function AddLabAppoinment() {
                             <div class="modal-content">
                                 <div class="modal-header">
 
-                                    <img className="row" src="siteImages/medlogo.png" alt="logo" style={{ width: "100px" }} />
+                                    <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
                                     <h5 class="modal-title mt-4 pr-5" id="exampleModalLongTitle"><b>Appoinment Success</b></h5>
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -318,7 +322,7 @@ export default function AddLabAppoinment() {
                                     <div class="rounded border border-success pb-2">
                                         <h2 className="text-primary">Comfirmation E-mail send<br />With Details</h2>
                                         <h4 className="text-success">Please Check Your Email</h4>
-                                        <img src="siteImages/modal-success.png" style={{ width: "50px" }} />
+                                        <img src={successimg} style={{ width: "50px" }} />
                                     </div>
 
                                 </div>
@@ -334,6 +338,7 @@ export default function AddLabAppoinment() {
                             <div class="modal-content">
 
                                 <div class="modal-header">
+                                    <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
 
                                     <h5 class="modal-title" id="exampleModalLongTitle">Doctor Appoinment UnSuccess</h5>
 
@@ -346,7 +351,7 @@ export default function AddLabAppoinment() {
 
                                     <div class="rounded border border-success">
                                         <h2 className="text-primary">Please Try Again</h2><br />
-                                        <img src="siteImages/model-unsuccess.png" style={{ width: "50px" }} />
+                                        <img src={unsuccessimg} style={{ width: "50px" }} />
                                     </div>
 
                                 </div>

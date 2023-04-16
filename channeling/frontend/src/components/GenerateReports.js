@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import ReactPrint from "react-to-print";
 import { useNavigate } from "react-router-dom";
 
+import chartImage from "../siteImages/chartImage.jpg";
+
 
 
 export default function GenerateReports() {
@@ -41,7 +43,7 @@ export default function GenerateReports() {
 
 
         <section class="container" style={{
-            backgroundImage: `url("siteImages/chartImage.jpg")`,
+            backgroundImage: `url(${chartImage})`,
             backgroundRepeat: 'no-repeat',
             minHeight: '100vh',
             backgroundSize: 'cover',
