@@ -33,6 +33,8 @@ export default function GenerateReports() {
             })
         }
         getDoctorName();
+        setDoctorName("Dr rifsy");
+        setLabTestType("Creatinine");
 
     }, [])
 

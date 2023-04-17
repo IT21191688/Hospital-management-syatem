@@ -10,8 +10,6 @@ export default function PrintDoAppoinmentResipt() {
     const { labTestType } = useParams();
 
 
-
-
     const [success, setSuccess] = useState("");
     const [cancel, setCancel] = useState("");
     const [pending, setFuther] = useState("");

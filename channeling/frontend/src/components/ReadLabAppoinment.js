@@ -104,7 +104,7 @@ export default function ReadLabAppoinment() {
             <div class="text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "180px", overflow: "hidden" }}>
 
                 <h6 class="">{dateString}</h6>
-                <h1 class="text-success">All LabAppoinments</h1>
+                <h1 class="text-light">All LabAppoinments</h1>
                 <div class="row mt-4 justify-content-center">
                     <div className="form-group col-md-2 mt-3 mt-md-0">
                         <label for="name"><b>Test Type</b></label><br />

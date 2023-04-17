@@ -80,7 +80,7 @@ export default function ReadAppoinment() {
 
 
             <div class="text-white  " style={{ background: "#2F4FAA", height: "180px" }}>
-                <h1 className="text-success">Doctor Appoinments</h1>
+                <h1 className="text-light">Doctor Appoinments</h1>
 
                 <div class="row mt-4 justify-content-center">
 
