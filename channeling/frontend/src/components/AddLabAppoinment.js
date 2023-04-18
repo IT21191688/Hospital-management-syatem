@@ -244,6 +244,19 @@ export default function AddLabAppoinment() {
 
     }
 
+
+    const isEmailValid = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+
+    const validateNumber = (input) => {
+        var re = /[0][0-9]{9}$/;
+
+        return re.test(input)
+    }
+
     function validateForm() {
 
         let fname = document.forms["Addform"]["fname"].value;
@@ -271,9 +284,26 @@ export default function AddLabAppoinment() {
         }
 
         let Lemail = document.forms["Addform"]["email"].value;
-        if (Lemail == "") {
-            alert("email must be filled out");
+        if (!isEmailValid(Lemail)) {
+            if (Lemail === "") {
+                isEmailValid(email)
+                alert("email must be filled out");
+                return false;
+            }
+            alert("Please Enter the valid format");
             return false;
+
+        }
+        let Ltelephone = document.forms["Addform"]["telephone"].value;
+        if (!validateNumber(Ltelephone)) {
+            if (Ltelephone === "") {
+                //isEmailValid(email)
+                alert("email must be filled out");
+                return false;
+            }
+            alert("Please Enter the valid format");
+            return false;
+
         }
 
         let Ldate = document.forms["Addform"]["date"].value;

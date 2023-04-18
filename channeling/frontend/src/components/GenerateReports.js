@@ -50,12 +50,13 @@ export default function GenerateReports() {
             minHeight: '100vh',
             backgroundSize: 'cover',
             position: 'center',
-            maxWidth: '70%'
+            maxWidth: '100%'
 
         }}>
             <div class="row">
                 <div class="col">
-                    <h2>Doctor Appoinment Reports</h2>
+                    <br></br><br></br>
+                    <h2 className="text-light">Doctor Appoinment Reports</h2>
                     <div className="form-group col-md-6 mt-3 mt-md-0">
                         <label for="name"><b>Doctor</b></label>
                         <select className="form-control" onChange={e => setDoctorName(e.target.value)}>
@@ -68,7 +69,8 @@ export default function GenerateReports() {
                     <a href={'/generateDoctorReport/' + dname}><button class="btn btn-primary btn-sm">Generate Chart</button></a>
                 </div>
                 <div class="col">
-                    <h2>Lab Appoinment Reports</h2>
+                    <br></br><br></br>
+                    <h2 className="text-light">Lab Appoinment Reports</h2>
                     <div className="form-group col-md-6 mt-3 mt-md-0">
                         <label for="name"><b>Lab Test Category</b></label>
                         <select className="form-control" onChange={e => setLabTestType(e.target.value)} required>

@@ -92,6 +92,9 @@ export default function AddAppoinment() {
                 console.log(res.data);
 
                 setChanneling(res.data);
+                setDoctorCategory(res.data[0].doctor_category);
+                setDoctorName(res.data[0].doctor_name);
+
 
 
             }).catch(function (err) {
@@ -108,6 +111,7 @@ export default function AddAppoinment() {
                 setAppoinmentDetails(res.data);
 
 
+
             }).catch(function (err) {
                 alert("data not fech" + err);
             })
@@ -115,6 +119,8 @@ export default function AddAppoinment() {
         getAppoinmentDetails();
 
     }, [])
+
+
 
 
     function successModel() {
@@ -270,7 +276,21 @@ export default function AddAppoinment() {
 
     }
 
+
+    const isEmailValid = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    const validateNumber = (input) => {
+        var re = /[0][0-9]{9}$/;
+
+        return re.test(input)
+    }
+
+
     function validateForm() {
+
 
         let fname = document.forms["Addform"]["fname"].value;
         if (fname === "") {
@@ -297,9 +317,27 @@ export default function AddAppoinment() {
         }
 
         let Lemail = document.forms["Addform"]["email"].value;
-        if (Lemail === "") {
-            alert("email must be filled out");
+        if (!isEmailValid(Lemail)) {
+            if (Lemail === "") {
+                isEmailValid(email)
+                alert("email must be filled out");
+                return false;
+            }
+            alert("Please Enter the valid format");
             return false;
+
+        }
+
+        let Ltelephone = document.forms["Addform"]["telephone"].value;
+        if (!validateNumber(Ltelephone)) {
+            if (Ltelephone === "") {
+                //isEmailValid(email)
+                alert("telephone must be filled out");
+                return false;
+            }
+            alert("Please Enter the valid format");
+            return false;
+
         }
 
         let Ldate = document.forms["Addform"]["date"].value;
@@ -445,11 +483,11 @@ export default function AddAppoinment() {
                     <div class="row">
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>E-mail</b></label>
-                            <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" onChange={function (e) { setEmail(e.target.value); }} required />
+                            <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onChange={function (e) { setEmail(e.target.value); }} required />
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Telephone</b></label>
-                            <input name="telephone" type="text" className="form-control" id="telephone" placeholder="07XXXXXXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onChange={function (e) { setTelephone(e.target.value); }} required />
+                            <input name="telephone" type="text" className="form-control" id="telephone" placeholder="07XXXXXXXX" pattern="[0][0-9]{9}" onChange={function (e) { setTelephone(e.target.value); }} required />
                         </div><br />
                     </div>
                     <div class="row">
