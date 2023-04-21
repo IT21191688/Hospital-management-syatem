@@ -294,18 +294,20 @@ export default function AddLabAppoinment() {
             return false;
 
         }
+
+        /*
         let Ltelephone = document.forms["Addform"]["telephone"].value;
         if (!validateNumber(Ltelephone)) {
             if (Ltelephone === "") {
                 //isEmailValid(email)
-                alert("email must be filled out");
+                alert("telephone must be filled out");
                 return false;
             }
             alert("Please Enter the valid format");
             return false;
 
         }
-
+*/
         let Ldate = document.forms["Addform"]["date"].value;
         if (Ldate == "") {
             alert("date must be filled out");

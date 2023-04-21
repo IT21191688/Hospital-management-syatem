@@ -1,8 +1,5 @@
 //import router pacage
 const router = require("express").Router();
-
-
-
 const { request } = require("express");
 
 //import nodemailer
