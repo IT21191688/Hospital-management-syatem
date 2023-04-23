@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Link, Navigate, NavLink, props } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import AppoinmentSearch from "../siteImages/AppoinmentSearchImg.jpg";
+
 
 export default function ReadAppoinment() {
 
@@ -74,13 +76,15 @@ export default function ReadAppoinment() {
 
 
     return (
-        <section className="bg-success" style={{
+        <section className="" style={{
             overflow: "hidden",
             width: "100%",
-            height: "100vh"
+            height: "100vh",
+            backgroundSize: 'cover',
+            backgroundImage: `url( ${AppoinmentSearch})`
         }}>
 
-            <div className="bg-info row">
+            <div className="row mt-5">
                 <section className="col-md-6">
                     <h1 className="text-dark">Doctor Appoinments</h1>
                     {filteredReports.map((appoinment) => (
@@ -140,8 +144,8 @@ export default function ReadAppoinment() {
 
             </div >
             <br></br>
-            <div>
-                <button type="submit" className="btn btn-danger col-md-3 mt-0 mt-md-0 mr-5 justify-content-center " onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
+            <div className="fixed-bottom">
+                <button type="submit" className="btn btn-danger col-md-3 mt-0 mr-5 justify-content-center" onClick={() => navigate("/appoinment")}>Back To Appoinment</button><br>
                 </br><br>
                 </br>
             </div>

@@ -187,7 +187,7 @@ export default function PrintDoAppoinmentResipt() {
             overflow: "hidden"
         }}>
             <div class="row">
-                <div className="row">
+                <div className="row container">
                     <div class="col bg-secondary">
                         <div >
                             <br></br>
