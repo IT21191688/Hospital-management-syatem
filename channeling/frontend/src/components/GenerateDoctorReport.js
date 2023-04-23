@@ -196,6 +196,7 @@ export default function PrintDoAppoinmentResipt() {
                                 <label for="name "><b>date</b></label>
                                 <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
                             </div><br />
+
                             <div className="form-group col-md-6 mt-3 mt-md-0">
                                 <label for="name"><b>Report Type</b></label>
                                 <select className="form-control" onChange={e => setReportType(e.target.value)} required>
