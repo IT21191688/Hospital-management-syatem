@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
 import moment from "moment";
-
+import reportGenerate from "../siteImages/reportGeneratePage.jpg";
 
 
 export default function PrintDoAppoinmentResipt() {
@@ -176,48 +176,59 @@ export default function PrintDoAppoinmentResipt() {
     return (
 
 
-        <div class="container">
+        <div class="" style={{
+            backgroundImage: `url( ${reportGenerate})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+            opacity: '1',
+            overflow: "hidden"
+        }}>
             <div class="row">
-                <div class="col">
-                    <div className="">
-                        <br></br>
-                        <h3>Doctor Name: {dname}</h3><br></br>
-                        <div className="form-group col-md-6">
-                            <label for="name "><b>date</b></label>
-                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                        </div><br />
-                        <div className="form-group col-md-6 mt-3 mt-md-0">
-                            <label for="name"><b>Report Type</b></label>
-                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
-                                <option key={"Daily"} value={"Daily"}>Daily</option>
-                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
-                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
-                            </select>
-                        </div>
+                <div className="row">
+                    <div class="col bg-secondary">
+                        <div >
+                            <br></br>
+                            <h3>Doctor Name: {dname}</h3><br></br>
+                            <div className="form-group col-md-6">
+                                <label for="name "><b>date</b></label>
+                                <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                            </div><br />
+                            <div className="form-group col-md-6 mt-3 mt-md-0">
+                                <label for="name"><b>Report Type</b></label>
+                                <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                    <option key={"Daily"} value={"Daily"}>Daily</option>
+                                    <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                    <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <h3>Appoinment Count</h3><br>
-                            </br>
-                            <h5>Success&nbsp;:{success}</h5>
-                            <h5>Unsucces:{unsuccess}</h5>
-                            <h5>Pending&nbsp;:{pending}</h5>
-                            <h5>cancel&nbsp;:{cancel}</h5>
-                        </div>
+                            <div>
+                                <h3>Appoinment Count</h3><br>
+                                </br>
+                                <h5>Success&nbsp;:{success}</h5>
+                                <h5>Unsucces:{unsuccess}</h5>
+                                <h5>Pending&nbsp;:{pending}</h5>
+                                <h5>cancel&nbsp;:{cancel}</h5>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <h2>Appoinment Details Chart</h2><br />
-                        <BarChart width={600} height={400} data={data}>
-                            <Bar dataKey="students" fill={colors[0]} />
-                            <CartesianGrid stroke="#ccc" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                        </BarChart><br />
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                    <div class="col bg-secondary">
+                        <div class="">
+                            <h2>Appoinment Details Chart</h2><br />
+                            <BarChart width={600} height={400} data={data}>
+                                <Bar dataKey="students" fill={colors[0]} />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                            </BarChart><br />
+                        </div>
+                        <div className="d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                        </div>
                     </div>
                 </div>
             </div >

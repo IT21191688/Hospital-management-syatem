@@ -7,6 +7,7 @@ import logo from "../siteImages/medlogo.png";
 
 
 
+
 export default function PrintDoAppoinmentResipt() {
 
     const { id } = useParams();
@@ -68,7 +69,10 @@ export default function PrintDoAppoinmentResipt() {
 
 
         <>
-            <main className='background bg-warning' style={{ minHeight: "100vh" }}>
+            <main className='background bg-warning' style={{
+                minHeight: "100vh"
+
+            }}>
                 <header>
                     <div >
                         <center>

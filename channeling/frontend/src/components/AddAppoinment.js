@@ -328,6 +328,7 @@ export default function AddAppoinment() {
 
         }
 
+        /*
         let Ltelephone = document.forms["Addform"]["telephone"].value;
         if (!validateNumber(Ltelephone)) {
             if (Ltelephone === "") {
@@ -339,6 +340,7 @@ export default function AddAppoinment() {
             return false;
 
         }
+        */
 
         let Ldate = document.forms["Addform"]["date"].value;
         if (Ldate === "") {
@@ -366,7 +368,8 @@ export default function AddAppoinment() {
                 minHeight: '100vh',
                 backgroundSize: 'cover',
                 position: 'center',
-                maxWidth: '100%'
+                maxWidth: '100%',
+                opacity: '1'
 
             }}>
 

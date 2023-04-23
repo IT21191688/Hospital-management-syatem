@@ -79,7 +79,8 @@ export default function ReadAppoinment() {
         <div className="container-md" style={{ overflow: "hidden" }}>
 
 
-            <div class="text-white  " style={{ background: "#2F4FAA", height: "180px" }}>
+            <div class="text-white  " style={{ background: "#26CDD1", height: "180px" }}>
+                <br />
                 <h1 className="text-light">Doctor Appoinments</h1>
 
                 <div class="row mt-4 justify-content-center">
@@ -104,7 +105,7 @@ export default function ReadAppoinment() {
 
                     <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
-                        <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
+                        <button type="button" class="btn text-black mt-2" style={{ background: "#2F4FAA" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
                     </div>
 
                 </div>

@@ -21,7 +21,7 @@ export default function Appoinements() {
 
                             <h2 className="text-white pr-5">Channel a doctor quick and easy with <br />Direct Appoinments at<br /> Medixo E-Health</h2>
                             <div class="d-flex ml-5">
-                                <button class="btn-get-started scrollto ml-5" onClick={() => navigate("/AddAppoinment")}>Make Doctor Appoinment</button>
+                                <button class="btn-get-started scrollto ml-5" onClick={() => navigate("/AddAppoinment")} style={{ cursor: "pointer" }}>Make Doctor Appoinment</button>
                             </div>
                         </div>
                         <div class="col-lg-6 order-1 order-lg-2 hero-img">
@@ -47,7 +47,7 @@ export default function Appoinements() {
                         <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-2 d-flex flex-column justify-content-center">
                             <h2 className="text-white pr-5">Make A Lab Test Appoinments quick and<br /> easy Direct Appoinments at<br /> Medixo E-Health</h2>
                             <div class="d-flex ml-5">
-                                <button class="btn-get-started scrollto ml-5" onClick={() => navigate("/AddLabAppoinment")}>Make LabTest appoinment</button>
+                                <button class="btn-get-started scrollto ml-5" onClick={() => navigate("/AddLabAppoinment")} style={{ cursor: "pointer" }}>Make LabTest appoinment</button>
                             </div>
                         </div>
                         <div class="col-lg-6 order-2 order-lg-1 hero-img">

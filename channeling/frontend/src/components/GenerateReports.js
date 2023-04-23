@@ -54,25 +54,25 @@ export default function GenerateReports() {
 
         }}>
             <div class="row">
-                <div class="col">
+                <div class="col-md-5 justify-content-center mt-5 container bg-secondary ml-5 border border-success rounded" style={{ opacity: "0.8" }}>
                     <br></br><br></br>
                     <h2 className="text-light">Doctor Appoinment Reports</h2>
-                    <div className="form-group col-md-6 mt-3 mt-md-0">
-                        <label for="name"><b>Doctor</b></label>
+                    <div className="form-group mt-5">
+                        <label for="name" className="mt-4"><b ><h3>Select Doctor</h3></b></label>
                         <select className="form-control" onChange={e => setDoctorName(e.target.value)}>
                             {channeling.map(item => (
                                 <option key={item.doctor_name} value={item.doctor_name}>{item.doctor_name}</option>
                             ))}
                         </select>
-                    </div><br />
+                    </div><br /><br /><br />
 
-                    <a href={'/generateDoctorReport/' + dname}><button class="btn btn-primary btn-sm">Generate Chart</button></a>
+                    <a href={'/generateDoctorReport/' + dname}><button class="btn btn-success btn-lg">Generate Chart</button></a>
                 </div>
-                <div class="col">
+                <div class="col-md-5 justify-content-center mt-5 bg-secondary mr-5 border border-success rounded" style={{ opacity: "0.8" }}>
                     <br></br><br></br>
                     <h2 className="text-light">Lab Appoinment Reports</h2>
-                    <div className="form-group col-md-6 mt-3 mt-md-0">
-                        <label for="name"><b>Lab Test Category</b></label>
+                    <div className="form-group mt-5">
+                        <label for="name" className="mt-4"><b><h3>Lab Test Category</h3></b></label>
                         <select className="form-control" onChange={e => setLabTestType(e.target.value)} required>
                             <option key={"Creatinine"} value={"Creatinine"}>Creatinine</option>
                             <option key={"CRP"} value={"CRP"}>CRP</option>
@@ -82,10 +82,12 @@ export default function GenerateReports() {
                             <option key={"FullBloodCount"} value={"FullBloodCount"}>Full Blood Count</option>
                             <option key={"UrineFR"} value={"UrineFR"}>Urine FR</option>
                         </select>
-                    </div><br></br>
+                    </div><br></br><br /><br />
 
-                    <a href={'/generateLabTestReport/' + labTestType}><button class="btn btn-primary btn-sm">Generate Chart</button></a>
+                    <a href={'/generateLabTestReport/' + labTestType}><button class="btn btn-success btn-lg">Generate Chart</button></a>
+                    <br></br><br></br><br></br>
                 </div>
+
             </div>
         </section>
 
