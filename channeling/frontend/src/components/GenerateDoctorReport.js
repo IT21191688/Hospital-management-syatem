@@ -186,24 +186,30 @@ export default function PrintDoAppoinmentResipt() {
             opacity: '1',
             overflow: "hidden"
         }}>
-            <div class="row">
-                <div className="row container">
-                    <div class="col bg-secondary">
-                        <div >
+            <div>
+                <div className="row container-md justify-content-center bg-light pt-5" style={{ opacity: "0.85", minHeight: "100vh" }} >
+                    <div class="col"  >
+                        <div className="ml-5" >
                             <br></br>
                             <h3>Doctor Name: {dname}</h3><br></br>
-                            <div className="form-group col-md-6">
-                                <label for="name "><b>date</b></label>
-                                <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                            </div><br />
+                            <div className="ml-5">
+                                <div className="ml-5">
+                                    <div className="ml-5">
+                                        <div className="form-group col-md-6 ml-5">
+                                            <label for="name"><b>date</b></label>
+                                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                                        </div><br />
 
-                            <div className="form-group col-md-6 mt-3 mt-md-0">
-                                <label for="name"><b>Report Type</b></label>
-                                <select className="form-control" onChange={e => setReportType(e.target.value)} required>
-                                    <option key={"Daily"} value={"Daily"}>Daily</option>
-                                    <option key={"Monthly"} value={"Monthly"}>Monthly</option>
-                                    <option key={"Yearly"} value={"Yearly"}>Yearly</option>
-                                </select>
+                                        <div className="form-group col-md-6 mt-3 ml-5">
+                                            <label for="name"><b>Report Type</b></label>
+                                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                                <option key={"Daily"} value={"Daily"}>Daily</option>
+                                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
@@ -217,7 +223,7 @@ export default function PrintDoAppoinmentResipt() {
 
                         </div>
                     </div>
-                    <div class="col bg-secondary">
+                    <div class="col" >
                         <div class="">
                             <h2>Appoinment Details Chart</h2><br />
                             <BarChart width={600} height={400} data={data}>

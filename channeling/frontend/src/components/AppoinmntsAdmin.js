@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import docAppoinmentpgBack from "../siteImages/docAppoinmentpgBack.jpg";
 import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpg";
-
+import appoinmentAdminpgBack from "../siteImages/appoinmentAdminPageBack.jpg";
 export default function AppoinementsAdmin() {
 
     const navigate = useNavigate();
@@ -11,13 +11,21 @@ export default function AppoinementsAdmin() {
 
     return (
 
-        <div className="bg-info" style={{ minHeight: "100vh" }}>
+        <div className="" style={{
+            minHeight: "100vh",
+            backgroundImage: `url( ${appoinmentAdminpgBack})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+        }}>
             <div className="container">
                 <div>
                     <h1>Appoinment Admin Page</h1>
                 </div><br></br>
                 <div class="card-deck" style={{ height: "400px" }}>
-                    <a class="card bg-secondary" onClick={() => navigate("/ReadAppoinment")} style={{ cursor: "pointer" }}>
+                    <a class="card text-light" onClick={() => navigate("/ReadAppoinment")} style={{ cursor: "pointer", background: "#26CDD1" }}>
                         <div>
                             <img class="card-img-top" height={"400px"} src={docAppoinmentpgBack} alt="Card image cap" />
                             <div class="card-body">
@@ -26,7 +34,7 @@ export default function AppoinementsAdmin() {
                         </div>
                     </a>
 
-                    <a class="card bg-secondary" onClick={() => navigate("/ReadLabAppoinment")} style={{ cursor: "pointer" }}>
+                    <a class="card text-light" onClick={() => navigate("/ReadLabAppoinment")} style={{ cursor: "pointer", background: "#26CDD1" }}>
                         <div >
                             <img class="card-img-top" height={"400px"} src={labAppoinmentpgBack} alt="Card image cap" />
                             <div class="card-body">

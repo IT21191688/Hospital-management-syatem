@@ -101,7 +101,7 @@ export default function ReadLabAppoinment() {
             </div>
 
 
-            <div class="text-white justify-content-center w-100" style={{ background: "#2F4FAA", height: "180px", overflow: "hidden" }}>
+            <div class="text-white justify-content-center w-100" style={{ background: "#26CDD1", height: "180px", overflow: "hidden" }}>
 
                 <h6 class="">{dateString}</h6>
                 <h1 class="text-light">All LabAppoinments</h1>
@@ -131,7 +131,7 @@ export default function ReadLabAppoinment() {
 
                     <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
-                        <button type="button" class="btn text-black mt-2" style={{ background: "#26CDD1" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
+                        <button type="button" class="btn text-black mt-2" style={{ background: "#2F4FAA" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
 
                     </div>
 

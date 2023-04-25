@@ -295,7 +295,7 @@ export default function AddLabAppoinment() {
 
         }
 
-        /*
+
         let Ltelephone = document.forms["Addform"]["telephone"].value;
         if (!validateNumber(Ltelephone)) {
             if (Ltelephone === "") {
@@ -307,7 +307,7 @@ export default function AddLabAppoinment() {
             return false;
 
         }
-*/
+
         let Ldate = document.forms["Addform"]["date"].value;
         if (Ldate == "") {
             alert("date must be filled out");

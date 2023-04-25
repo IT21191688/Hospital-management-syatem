@@ -66,18 +66,22 @@ export default function PrintDoAppoinmentResipt() {
 
 
         <>
-            <main className='background bg-warning' style={{ minHeight: "100vh" }}>
+            <main className='background' style={{
+                minHeight: "100vh", minHeight: "100vh",
+                background: "#26CDD1",
+                overflow: "hidden"
+            }}>
                 <header>
                     <div className="input">
                         <h1>Lab Appoinment Recipt</h1>
                     </div>
                 </header>
-                <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
-                    <div className="company-details-header row d-flex justify-content-center mt-3">
+                <section ref={ref} className="container border border-success rounded bg-light" >
+                    <div className="row d-flex justify-content-center mt-3">
                         <img className="row" src={logo} alt="logo" style={{ width: "100px" }} />
                         <label><h2>Medixo E-Health Care Center (PVT) LTD</h2></label>
                     </div>
-                    <div className="company-details-container">
+                    <div className="company-details-container d-flex justify-content-center">
                         <div className="company-details">
                             <label className="detailsedit">Address : </label><label>MEDIXO, No 257, Matale Road, Dambulla</label><br />
                             <label className="detailsedit">Email : </label><label>Medxio123@gmail.com</label>&nbsp;&nbsp;&nbsp;&nbsp;
