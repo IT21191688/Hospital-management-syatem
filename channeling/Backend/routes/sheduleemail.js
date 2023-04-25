@@ -17,7 +17,7 @@ const fs = require('fs');
 
 
 
-cron.schedule('* * * * *', function () {
+cron.schedule('0 0 * * *', function () {
     console.log("Shedule Run");
     sheduledEmail();
 });
@@ -31,7 +31,6 @@ let transporter = nodemailer.createTransport({
         pass: 'boupdtqanzqxslcg'
     }
 });
-
 
 const sheduledEmail = async function () {
 

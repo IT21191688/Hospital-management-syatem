@@ -18,7 +18,7 @@ export default function AppoinementsAdmin() {
             minHeight: '100vh',
             backgroundSize: 'cover',
             position: 'center',
-            maxWidth: '100%',
+            maxWidth: '100%'
         }}>
             <div className="container">
                 <div>

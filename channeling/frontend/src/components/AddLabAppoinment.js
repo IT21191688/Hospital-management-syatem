@@ -6,6 +6,7 @@ import logo from "../siteImages/medlogo.png";
 import successimg from "../siteImages/modal-success.png";
 import unsuccessimg from "../siteImages/model-unsuccess.png";
 import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpg";
+import moment from "moment";
 
 export default function AddLabAppoinment() {
 
@@ -75,7 +76,7 @@ export default function AddLabAppoinment() {
 
             axios.post("http://localhost:8050/labappoinment/addLabAppoinment", formData).then(function () {
 
-                alert("LabAppoinment Add");
+                //alert("LabAppoinment Add");
                 successModel();
 
             }).catch(function (err) {
@@ -257,6 +258,33 @@ export default function AddLabAppoinment() {
         return re.test(input)
     }
 
+    function validateDate(date) {
+
+        let todayYear = new Date().getFullYear()
+        let todayMonth = new Date().getMonth() + 1
+        let todayDay = new Date().getDate()
+
+        let selectdateYear = Number(moment(date).utc().format('YYYY'))
+        let selectdateMonth = Number(moment(date).utc().format('MM'))
+        let selectdateDay = Number(moment(date).utc().format('DD'))
+        let selectedNewDate = Number(selectdateDay) + 1
+
+        if (todayYear === selectdateYear) {
+            if (todayMonth === selectdateMonth) {
+                if (todayDay <= selectedNewDate) {
+
+                    return true;
+
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+
+
     function validateForm() {
 
         let fname = document.forms["Addform"]["fname"].value;
@@ -278,8 +306,11 @@ export default function AddLabAppoinment() {
         }
 
         let Lnic = document.forms["Addform"]["nic"].value;
-        if (Lnic == "") {
+        if (Lnic === "") {
             alert("nic must be filled out");
+            return false;
+        } else if (Lnic.length !== 12) {
+            alert("nic Must Have 12 digits");
             return false;
         }
 
@@ -309,8 +340,21 @@ export default function AddLabAppoinment() {
         }
 
         let Ldate = document.forms["Addform"]["date"].value;
-        if (Ldate == "") {
-            alert("date must be filled out");
+        if (!validateDate(Ldate)) {
+            alert("Date must be filled out Correctly");
+            return false;
+        }
+
+
+        let LFile = document.forms["Addform"]["formFileMultiple"];
+        if (LFile.files.length == 0) {
+            alert("File must be filled out");
+            return false;
+        }
+
+        let LTCategory = document.forms["Addform"]["labTestCategory"].value;
+        if (LTCategory == "") {
+            alert("Please select the Lab test Category");
             return false;
         }
 
@@ -429,7 +473,7 @@ export default function AddLabAppoinment() {
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Nic</b></label>
-                            <input name="nic" type="text" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
                         </div><br />
 
                     </div>
@@ -463,7 +507,7 @@ export default function AddLabAppoinment() {
                     <div class="row">
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Lab Test Category</b></label>
-                            <select className="form-control" onChange={e => setLabTestType(e.target.value)} required>
+                            <select className="form-control" onChange={e => setLabTestType(e.target.value)} id="labTestCategory" required>
                                 <option key={"Creatinine"} value={"Creatinine"}>Creatinine</option>
                                 <option key={"CRP"} value={"CRP"}>CRP</option>
                                 <option key={"Electrolytes"} value={"Electrolytes"}>Electrolytes</option>
@@ -476,7 +520,7 @@ export default function AddLabAppoinment() {
 
                         <div className="form-group form-group col-md-2 mt-3 mt-md-0">
                             <label for="name"><b>Appoinment No</b></label>
-                            <input name="appoinmentNo" type="text" className="form-control" id="telephone" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
+                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
                         </div><br />
 
                         <div className="form-group col-md-4 mt-3 mt-md-0">

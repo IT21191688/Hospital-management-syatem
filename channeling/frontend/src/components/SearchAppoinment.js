@@ -81,7 +81,8 @@ export default function ReadAppoinment() {
             width: "100%",
             height: "100vh",
             backgroundSize: 'cover',
-            backgroundImage: `url( ${AppoinmentSearch})`
+            backgroundImage: `url( ${AppoinmentSearch})`,
+            opacity: "1"
         }}>
 
             <div className="row mt-5">

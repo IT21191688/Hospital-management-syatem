@@ -116,7 +116,7 @@ export default function PrintDoAppoinmentResipt() {
 
                     if (Montlydate === reportMonth) {
 
-                        alert("year completerd");
+                        //alert("year completerd");
                         if (appoinments[j].status === "success") {
                             success++;
                         }
@@ -171,7 +171,7 @@ export default function PrintDoAppoinmentResipt() {
 
     }
 
-    const colors = ['#FFC107', '#2196F3', '#4CAF50', '#E91E63'];
+    const colors = ['#4646d2', '#2196F3', '#4CAF50', '#E91E63'];
 
     return (
 
@@ -187,9 +187,9 @@ export default function PrintDoAppoinmentResipt() {
             overflow: "hidden"
         }}>
             <div>
-                <div className="row container-md justify-content-center bg-light pt-5" style={{ opacity: "0.85", minHeight: "100vh" }} >
-                    <div class="col"  >
-                        <div className="ml-5" >
+                <div className="row container-md justify-content-center bg-light pt-5" style={{ opacity: "0.7", minHeight: "100vh" }} >
+                    <div class="col col-md-5 ml-5 rounded" style={{ background: "#cce6ff" }}>
+                        <div className="ml-5 mt-4" >
                             <br></br>
                             <h3>Doctor Name: {dname}</h3><br></br>
                             <div className="ml-5">
@@ -223,8 +223,8 @@ export default function PrintDoAppoinmentResipt() {
 
                         </div>
                     </div>
-                    <div class="col" >
-                        <div class="">
+                    <div class="col rounded mr-5 col-md-5" style={{ background: "#cce6ff" }}>
+                        <div class="mt-5">
                             <h2>Appoinment Details Chart</h2><br />
                             <BarChart width={600} height={400} data={data}>
                                 <Bar dataKey="students" fill={colors[0]} />
@@ -234,7 +234,7 @@ export default function PrintDoAppoinmentResipt() {
                             </BarChart><br />
                         </div>
                         <div className="d-flex justify-content-center">
-                            <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                            <button type="button" class="btn btn-success" onClick={AssignTime}>Generate Today Chart</button>
                         </div>
                     </div>
                 </div>

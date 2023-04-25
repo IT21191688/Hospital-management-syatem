@@ -105,7 +105,7 @@ export default function ReadAppoinment() {
 
                     <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
-                        <button type="button" class="btn text-black mt-2" style={{ background: "#2F4FAA" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
+                        <button type="button" class="btn text-black mt-2 text-light" style={{ background: "#2F4FAA" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
                     </div>
 
                 </div>

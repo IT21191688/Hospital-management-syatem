@@ -60,7 +60,7 @@ export default function AddAppoinment() {
 
             axios.post("http://localhost:8050/appoinment/addAppoinment", formData).then(function () {
 
-                alert("Student Add");
+                //alert("Student Add");
                 successModel();
 
             }).catch(function (err) {
@@ -296,9 +296,6 @@ export default function AddAppoinment() {
         let todayMonth = new Date().getMonth() + 1
         let todayDay = new Date().getDate()
 
-
-
-
         let selectdateYear = Number(moment(date).utc().format('YYYY'))
         let selectdateMonth = Number(moment(date).utc().format('MM'))
         let selectdateDay = Number(moment(date).utc().format('DD'))
@@ -309,6 +306,7 @@ export default function AddAppoinment() {
                 if (todayDay <= selectedNewDate) {
 
                     return true;
+
                 }
                 return false;
             }
@@ -316,6 +314,8 @@ export default function AddAppoinment() {
         }
         return false;
     }
+
+
 
 
     function validateForm() {
@@ -330,6 +330,7 @@ export default function AddAppoinment() {
         let lname = document.forms["Addform"]["lname"].value;
         if (lname === "") {
             alert("Last Name must be filled out");
+
             return false;
         }
 
@@ -343,6 +344,9 @@ export default function AddAppoinment() {
         if (Lnic === "") {
             alert("nic must be filled out");
             return false;
+        } else if (Lnic.length !== 12) {
+            alert("nic Must Have 12 digits");
+            return false;
         }
 
         let Lemail = document.forms["Addform"]["email"].value;
@@ -351,9 +355,11 @@ export default function AddAppoinment() {
             if (Lemail === "") {
                 isEmailValid(email)
                 alert("email must be filled out");
+
                 return false;
             }
             alert("Please Enter Email the valid format");
+
             return false;
 
         }
@@ -363,21 +369,24 @@ export default function AddAppoinment() {
         if (!validatePhoneNumber(phoneNumber)) {
 
             alert("Please enter a valid Sri Lankan mobile number");
+
             return false;
         }
 
 
         let Ldate = document.forms["Addform"]["date"].value;
         if (!validateDate(Ldate)) {
-            alert("date must be filled out Correctly");
+            alert("Date must be filled out Correctly");
             return false;
         }
 
         let LAppNo = document.forms["Addform"]["appoinmentNo"].value;
         if (LAppNo === "") {
             alert("Appoinment No must be filled out");
+
             return false;
         }
+
 
         return true;
 
@@ -494,6 +503,7 @@ export default function AddAppoinment() {
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Last Name</b></label>
                             <input name="lname" type="text" className="form-control" id="lastName" placeholder="Last Name" onChange={function (e) { setLastName(e.target.value); }} required />
+
                         </div><br />
                     </div>
 
@@ -504,7 +514,8 @@ export default function AddAppoinment() {
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>NIC</b></label>
-                            <input name="nic" type="text" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+
                         </div><br />
                     </div>
 

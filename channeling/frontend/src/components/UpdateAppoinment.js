@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../siteImages/medlogo.png";
 import successimg from "../siteImages/modal-success.png";
 import unsuccessimg from "../siteImages/model-unsuccess.png";
-
+import appoinmentAdminpgBack from "../siteImages/appoinmentAdminPageBack.jpg";
 
 
 export default function UpdateAppoinment() {
@@ -113,7 +113,16 @@ export default function UpdateAppoinment() {
 
 
 
-        <div className="d-up-page" style={{ background: "#26CDD1" }}>
+        <div className="d-up-page" style={{
+            background: "#26CDD1",
+            backgroundImage: `url( ${appoinmentAdminpgBack})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+            opacity: "0.9"
+        }}>
 
             <div >
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
@@ -179,7 +188,7 @@ export default function UpdateAppoinment() {
                     <h1>Update Appoinment Details</h1>
                     <h4 className="text-success">Patient Name:&nbsp;{first_name + " " + last_name}</h4>
                 </div>
-                <form className="container create-form border border-info rounded p-3 d-up-form" >
+                <form className="container create-form border border-info rounded p-3 d-up-form" style={{ background: "#F7F7F7", opacity: "0.9" }}>
 
                     <div class="row">
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
@@ -269,6 +278,6 @@ export default function UpdateAppoinment() {
                 </form>
                 <br />
             </div>
-        </div>
+        </div >
     );
 } 
