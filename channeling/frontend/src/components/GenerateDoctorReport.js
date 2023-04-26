@@ -112,7 +112,7 @@ export default function PrintDoAppoinmentResipt() {
                 else if (reportType === "Monthly") {
 
                     const reportMonth = moment(repModDate).utc().format('YYYY-MM')
-                    alert(reportMonth);
+                    //alert(reportMonth);
 
                     if (Montlydate === reportMonth) {
 
@@ -140,7 +140,7 @@ export default function PrintDoAppoinmentResipt() {
 
                     if (Yearlydate === reportYear) {
 
-                        alert("year completerd");
+                        //alert("year completerd");
                         if (appoinments[j].status === "success") {
                             success++;
                         }
