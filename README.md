@@ -3,7 +3,7 @@
 ##Git User Guide
 
 Create a clone of thiys project
--git clone 
+``` git clone https://github.com/IT21191688/Hospital-management-syatem.git ```
 
 - git status --> check the changes
 - git add . --> stage the changes
