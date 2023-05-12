@@ -6,6 +6,7 @@ import logo from "../siteImages/medlogo.png";
 import successimg from "../siteImages/modal-success.png";
 import unsuccessimg from "../siteImages/model-unsuccess.png";
 import docAppoinmentpgBack from "../siteImages/docAppoinmentpgBack.jpg";
+import moment from "moment";
 
 export default function AddAppoinment() {
 
@@ -24,6 +25,7 @@ export default function AddAppoinment() {
 
 
     const navigate = useNavigate();
+
 
 
 
@@ -58,7 +60,7 @@ export default function AddAppoinment() {
 
             axios.post("http://localhost:8050/appoinment/addAppoinment", formData).then(function () {
 
-                alert("Student Add");
+                //alert("Student Add");
                 successModel();
 
             }).catch(function (err) {
@@ -92,6 +94,9 @@ export default function AddAppoinment() {
                 console.log(res.data);
 
                 setChanneling(res.data);
+                setDoctorCategory(res.data[0].doctor_category);
+                setDoctorName(res.data[0].doctor_name);
+
 
 
             }).catch(function (err) {
@@ -108,6 +113,7 @@ export default function AddAppoinment() {
                 setAppoinmentDetails(res.data);
 
 
+
             }).catch(function (err) {
                 alert("data not fech" + err);
             })
@@ -115,6 +121,8 @@ export default function AddAppoinment() {
         getAppoinmentDetails();
 
     }, [])
+
+
 
 
     function successModel() {
@@ -270,7 +278,48 @@ export default function AddAppoinment() {
 
     }
 
+    //validation fields
+
+    const isEmailValid = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function validatePhoneNumber(phoneNumber) {
+        var regex = /^(?:\+94|0)[78]\d{8}$/;
+        return regex.test(phoneNumber);
+    }
+
+    function validateDate(date) {
+
+        let todayYear = new Date().getFullYear()
+        let todayMonth = new Date().getMonth() + 1
+        let todayDay = new Date().getDate()
+
+        let selectdateYear = Number(moment(date).utc().format('YYYY'))
+        let selectdateMonth = Number(moment(date).utc().format('MM'))
+        let selectdateDay = Number(moment(date).utc().format('DD'))
+        let selectedNewDate = Number(selectdateDay) + 1
+
+        if (todayYear === selectdateYear) {
+            if (todayMonth === selectdateMonth) {
+                if (todayDay <= selectedNewDate) {
+
+                    return true;
+
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+
+
+
     function validateForm() {
+
 
         let fname = document.forms["Addform"]["fname"].value;
         if (fname === "") {
@@ -281,6 +330,7 @@ export default function AddAppoinment() {
         let lname = document.forms["Addform"]["lname"].value;
         if (lname === "") {
             alert("Last Name must be filled out");
+
             return false;
         }
 
@@ -294,25 +344,49 @@ export default function AddAppoinment() {
         if (Lnic === "") {
             alert("nic must be filled out");
             return false;
-        }
-
-        let Lemail = document.forms["Addform"]["email"].value;
-        if (Lemail === "") {
-            alert("email must be filled out");
+        } else if (Lnic.length !== 12) {
+            alert("nic Must Have 12 digits");
             return false;
         }
 
+        let Lemail = document.forms["Addform"]["email"].value;
+        if (!isEmailValid(Lemail)) {
+
+            if (Lemail === "") {
+                isEmailValid(email)
+                alert("email must be filled out");
+
+                return false;
+            }
+            alert("Please Enter Email the valid format");
+
+            return false;
+
+        }
+
+
+        let phoneNumber = document.forms["Addform"]["telephone"].value;
+        if (!validatePhoneNumber(phoneNumber)) {
+
+            alert("Please enter a valid Sri Lankan mobile number");
+
+            return false;
+        }
+
+
         let Ldate = document.forms["Addform"]["date"].value;
-        if (Ldate === "") {
-            alert("date must be filled out");
+        if (!validateDate(Ldate)) {
+            alert("Date must be filled out Correctly");
             return false;
         }
 
         let LAppNo = document.forms["Addform"]["appoinmentNo"].value;
         if (LAppNo === "") {
             alert("Appoinment No must be filled out");
+
             return false;
         }
+
 
         return true;
 
@@ -328,7 +402,8 @@ export default function AddAppoinment() {
                 minHeight: '100vh',
                 backgroundSize: 'cover',
                 position: 'center',
-                maxWidth: '100%'
+                maxWidth: '100%',
+                opacity: '1'
 
             }}>
 
@@ -428,6 +503,7 @@ export default function AddAppoinment() {
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Last Name</b></label>
                             <input name="lname" type="text" className="form-control" id="lastName" placeholder="Last Name" onChange={function (e) { setLastName(e.target.value); }} required />
+
                         </div><br />
                     </div>
 
@@ -438,18 +514,19 @@ export default function AddAppoinment() {
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>NIC</b></label>
-                            <input name="nic" type="text" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+
                         </div><br />
                     </div>
 
                     <div class="row">
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>E-mail</b></label>
-                            <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" onChange={function (e) { setEmail(e.target.value); }} required />
+                            <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onChange={function (e) { setEmail(e.target.value); }} required />
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Telephone</b></label>
-                            <input name="telephone" type="text" className="form-control" id="telephone" placeholder="07XXXXXXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" onChange={function (e) { setTelephone(e.target.value); }} required />
+                            <input name="telephone" type="number" className="form-control" id="telephone" placeholder="07XXXXXXXX" pattern="[0][0-9]{9}" onChange={function (e) { setTelephone(e.target.value); }} required />
                         </div><br />
                     </div>
                     <div class="row">
@@ -459,7 +536,7 @@ export default function AddAppoinment() {
                         </div><br />
                         <div className="form-group form-group col-md-4 mt-3 mt-md-0">
                             <label for="name"><b>Appoinment No</b></label>
-                            <input name="appoinmentNo" type="text" className="form-control" id="telephone" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
+                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
                         </div><br />
                         <div className="form-group col-md-4 mt-3 mt-md-0">
                             <label for="name"><b>Generate Time And Appoinment No</b></label>

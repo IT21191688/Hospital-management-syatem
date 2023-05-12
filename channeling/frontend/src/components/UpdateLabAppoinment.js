@@ -114,7 +114,7 @@ export default function UpdateLabAppoinment() {
 
 
 
-        <div className="container">
+        <div className="" style={{ background: "#26CDD1", minHeight: "100vh" }}>
 
             <div>
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
@@ -175,8 +175,8 @@ export default function UpdateLabAppoinment() {
                 <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenter-un"></button>
 
             </div>
-            <h1>Update Lab Test Appoinment Details</h1>
-            <form className="create-form container" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
+            <h2 className="mt-2">Update Lab Test Appoinment Details</h2>
+            <form className="create-form container mt-4 create-form border border-info rounded p-3 d-up-form" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
 
                 <div class="row">
                     <div className="form-group col-md-6 mt-3 mt-md-0" >
@@ -247,7 +247,7 @@ export default function UpdateLabAppoinment() {
 
                     <button type="submit" className="btn btn-danger col-md-4 mt-0 mt-md-0 mr-5" onClick={() => navigate("/readLabAppoinment")}>Cancel</button>
                     <button type="submit" className="btn col-md-4 mt-0 mt-md-0 d-up-btn-update" onClick={btnClick}>Update</button>
-                </div><br />
+                </div>
             </form>
         </div >
     );

@@ -3,8 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import ReactPrint from "react-to-print";
 import { useNavigate } from "react-router-dom";
-
+import appoinmentAdminpgBack from "../siteImages/appoinmentAdminPageBack.jpg";
 import chartImage from "../siteImages/chartImage.jpg";
+import logo from "../siteImages/medlogo.png";
 
 
 
@@ -45,19 +46,33 @@ export default function GenerateReports() {
 
 
         <section class="container" style={{
-            backgroundImage: `url(${chartImage})`,
+
+            backgroundImage: `url(${appoinmentAdminpgBack})`,
             backgroundRepeat: 'no-repeat',
             minHeight: '100vh',
             backgroundSize: 'cover',
             position: 'center',
-            maxWidth: '70%'
-
+            maxWidth: '100%'
         }}>
-            <div class="row">
-                <div class="col">
-                    <h2>Doctor Appoinment Reports</h2>
-                    <div className="form-group col-md-6 mt-3 mt-md-0">
-                        <label for="name"><b>Doctor</b></label>
+
+
+
+            <div className="container-lg" style={{ height: "300px", background: "#26CDD1" }}>
+                <div className="container text-center text-light">
+                    <h3>MEDIXO E-HEALTH</h3>
+                    <img src={logo} className="rounded-circle bg-light" alt="Bird" width="200" height="200" />
+                    <h3>Generate Chart</h3><br></br>
+                </div>
+            </div>
+
+
+
+            <div class="row" >
+                <div class="col-md-5 justify-content-center mt-3 container ml-5 border border-success rounded" style={{ opacity: "0.8", background: "#718FD2" }} >
+                    <br></br>
+                    <h2 className="text-light">Doctor Appoinment Reports</h2>
+                    <div className="form-group mt-5" >
+                        <label for="name" className="mt-4"><b ><h3>Select Doctor</h3></b></label>
                         <select className="form-control" onChange={e => setDoctorName(e.target.value)}>
                             {channeling.map(item => (
                                 <option key={item.doctor_name} value={item.doctor_name}>{item.doctor_name}</option>
@@ -65,12 +80,14 @@ export default function GenerateReports() {
                         </select>
                     </div><br />
 
-                    <a href={'/generateDoctorReport/' + dname}><button class="btn btn-primary btn-sm">Generate Chart</button></a>
+                    <a href={'/generateDoctorReport/' + dname}><button class="btn btn-lg text-light" style={{ background: "#26CDD1" }}>Generate Chart</button></a>
+                    <br></br><br></br><br></br>
                 </div>
-                <div class="col">
-                    <h2>Lab Appoinment Reports</h2>
-                    <div className="form-group col-md-6 mt-3 mt-md-0">
-                        <label for="name"><b>Lab Test Category</b></label>
+                <div class="col-md-5 justify-content-center mt-3  mr-5 border border-success rounded" style={{ opacity: "0.8", background: "#718FD2" }}>
+                    <br></br>
+                    <h2 className="text-light">Lab Appoinment Reports</h2>
+                    <div className="form-group mt-5">
+                        <label for="name" className="mt-4"><b><h3>Lab Test Category</h3></b></label>
                         <select className="form-control" onChange={e => setLabTestType(e.target.value)} required>
                             <option key={"Creatinine"} value={"Creatinine"}>Creatinine</option>
                             <option key={"CRP"} value={"CRP"}>CRP</option>
@@ -80,12 +97,15 @@ export default function GenerateReports() {
                             <option key={"FullBloodCount"} value={"FullBloodCount"}>Full Blood Count</option>
                             <option key={"UrineFR"} value={"UrineFR"}>Urine FR</option>
                         </select>
-                    </div><br></br>
+                    </div>
+                    <br />
 
-                    <a href={'/generateLabTestReport/' + labTestType}><button class="btn btn-primary btn-sm">Generate Chart</button></a>
+                    <a href={'/generateLabTestReport/' + labTestType}><button class="btn btn-lg text-light" style={{ background: "#26CDD1" }}>Generate Chart</button></a>
+                    <br></br><br></br><br></br>
                 </div>
+
             </div>
-        </section>
+        </section >
 
 
 

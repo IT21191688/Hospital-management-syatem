@@ -5,6 +5,17 @@ const nodemailer = require('nodemailer');
 const Doctor = require('../models/doctor');
 let Appoinment = require("../models/appoinment");
 const router = express.Router();
+const Chart = require('chart.js/auto');
+
+//pdf generate 
+const { createCanvas } = require('canvas');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
+
+
+
+
 
 cron.schedule('0 0 * * *', function () {
     console.log("Shedule Run");
@@ -20,7 +31,6 @@ let transporter = nodemailer.createTransport({
         pass: 'boupdtqanzqxslcg'
     }
 });
-
 
 const sheduledEmail = async function () {
 
@@ -55,6 +65,8 @@ const sheduledEmail = async function () {
     const doctors = await Doctor.find();
 
     for (const doc of doctors) {
+
+        var docName = doc.doctor_name;
 
 
         let success = 0;
@@ -122,13 +134,64 @@ const sheduledEmail = async function () {
 
 
 
+        // create a new PDF document
+
+        const document = new PDFDocument();
+
+
+
+
+        // add some content to the PDF document
+        document.fontSize(18).text('Doctor' + doc.doctor_name, { align: 'center' });
+        document.moveDown();
+
+        for (let i = 0; i < appoinments.length; i++) {
+            const item = appoinments[i];
+
+            if (appoinments[i].doctor_name === doc.doctor_name) {
+
+                if (item.status === 'success') {
+                    document.fontSize(12).fillColor('green').text(`${item.appNo}: ${item.first_name + " " + item.last_name}: ${item.status}`);
+                    document.moveDown();
+                } else if (item.status === 'unsucess') {
+                    document.fontSize(12).fillColor('orange').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
+                    document.moveDown();
+                } else if (item.status === 'pending') {
+                    document.fontSize(12).fillColor('blue').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
+                    document.moveDown();
+                } else {
+                    document.fontSize(12).fillColor('red').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
+                    document.moveDown();
+                }
+            }
+        }
+
+        // construct the file name
+        const fileName = `Reports/${docName}.pdf`;
+
+        // save the PDF document to a file
+        document.pipe(fs.createWriteStream(fileName));
+
+        // end the PDF document
+        document.end();
+
+
+
         const mailOptions = {
             from: 'medixoehealth@gmail.com',
             to: doc.doctor_email,
             subject: 'Appointment details',
+            attachments: [
+                {
+                    filename: `${docName}.pdf`,
+                    path: `Reports/${docName}.pdf`
+                }
+            ],
+
             text: `Dear Doctor ${doc.doctor_name},\n\nToday You have Completed ${success} successfull appoinments.\n\n
             ${unsuccess} was unsuccess and also have ${pending} pending appoinments.\n
             ${cancel} Appoinments Canceled.\n\n\n
+            
 
 
             You Have Earned ${success} * 2000 =${success * 2000}
@@ -136,7 +199,13 @@ const sheduledEmail = async function () {
             Thank You.\n
 
             (this is a system generated email no reply neded ${today}).`
+
+
         };
+
+
+
+
 
 
         //send mail
@@ -144,16 +213,14 @@ const sheduledEmail = async function () {
             if (error) {
                 console.log(error);
             } else {
-                console.log('Email sent: ' + info.response);
+                console.log('Email sent: ' + info.response + doc.doctor_name);
+
             }
         });
 
     }
-
-
-
-
 }
+
 
 
 module.exports = router;

@@ -7,6 +7,7 @@ import logo from "../siteImages/medlogo.png";
 
 
 
+
 export default function PrintDoAppoinmentResipt() {
 
     const { id } = useParams();
@@ -62,21 +63,29 @@ export default function PrintDoAppoinmentResipt() {
 
     }, []);
 
+    // background: "#ced6d0"
+
 
 
     return (
 
 
         <>
-            <main className='background bg-warning' style={{ minHeight: "100vh" }}>
+            <main className='background' style={{
+                minHeight: "100vh",
+                background: "#26CDD1",
+                overflow: "hidden"
+
+            }}>
                 <header>
-                    <div >
+                    <div className="mt-3">
                         <center>
                             <h1 className="text-dark">Doctor Appoinment Recipt</h1>
                         </center>
                     </div>
                 </header>
-                <section ref={ref} className="container border border-success rounded" style={{ background: "#ced6d0" }} >
+
+                <section ref={ref} className="container border border-success rounded" style={{ background: "#FEFDFE" }} >
                     <div className="row d-flex justify-content-center mt-3">
                         <img alt="logo" src={logo} style={{ width: "100px" }} />
                         <label className="text-info"><h1>Medixo E-Health Care Center (PVT) LTD</h1></label>

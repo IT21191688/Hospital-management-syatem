@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
 import moment from "moment";
-
+import reportGenerate from "../siteImages/reportGeneratePage.jpg";
 
 
 export default function PrintDoAppoinmentResipt() {
@@ -116,7 +116,7 @@ export default function PrintDoAppoinmentResipt() {
 
                     if (Montlydate === reportMonth) {
 
-                        alert("year completerd");
+                        //alert("year completerd");
                         if (appoinments[j].status === "success") {
                             success++;
                         }
@@ -171,53 +171,71 @@ export default function PrintDoAppoinmentResipt() {
 
     }
 
-    const colors = ['#FFC107', '#2196F3', '#4CAF50', '#E91E63'];
+    const colors = ['#4646d2', '#2196F3', '#4CAF50', '#E91E63'];
 
     return (
 
 
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div className="">
-                        <br></br>
-                        <h3>Doctor Name: {dname}</h3><br></br>
-                        <div className="form-group col-md-6">
-                            <label for="name "><b>date</b></label>
-                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                        </div><br />
-                        <div className="form-group col-md-6 mt-3 mt-md-0">
-                            <label for="name"><b>Report Type</b></label>
-                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
-                                <option key={"Daily"} value={"Daily"}>Daily</option>
-                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
-                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
-                            </select>
-                        </div>
+        <div class="" style={{
+            backgroundImage: `url( ${reportGenerate})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+            opacity: '1',
+            overflow: "hidden"
+        }}>
+            <div>
+                <div className="row container-md justify-content-center bg-light pt-5" style={{ opacity: "0.7", minHeight: "100vh" }} >
+                    <div class="col col-md-5 ml-5 rounded" style={{ background: "#cce6ff" }}>
+                        <div className="ml-5 mt-4" >
+                            <br></br>
+                            <h3>Doctor Name: {dname}</h3><br></br>
+                            <div className="ml-5">
+                                <div className="ml-5">
+                                    <div className="ml-5">
+                                        <div className="form-group col-md-6 ml-5">
+                                            <label for="name"><b>date</b></label>
+                                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                                        </div><br />
 
-                        <div>
-                            <h3>Appoinment Count</h3><br>
-                            </br>
-                            <h5>Success&nbsp;:{success}</h5>
-                            <h5>Unsucces:{unsuccess}</h5>
-                            <h5>Pending&nbsp;:{pending}</h5>
-                            <h5>cancel&nbsp;:{cancel}</h5>
-                        </div>
+                                        <div className="form-group col-md-6 mt-3 ml-5">
+                                            <label for="name"><b>Report Type</b></label>
+                                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                                <option key={"Daily"} value={"Daily"}>Daily</option>
+                                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div>
+                                <h3>Appoinment Count</h3><br>
+                                </br>
+                                <h5>Success&nbsp;:{success}</h5>
+                                <h5>Unsucces:{unsuccess}</h5>
+                                <h5>Pending&nbsp;:{pending}</h5>
+                                <h5>cancel&nbsp;:{cancel}</h5>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <h2>Appoinment Details Chart</h2><br />
-                        <BarChart width={600} height={400} data={data}>
-                            <Bar dataKey="students" fill={colors[0]} />
-                            <CartesianGrid stroke="#ccc" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                        </BarChart><br />
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                    <div class="col rounded mr-5 col-md-5" style={{ background: "#cce6ff" }}>
+                        <div class="mt-5">
+                            <h2>Appoinment Details Chart</h2><br />
+                            <BarChart width={600} height={400} data={data}>
+                                <Bar dataKey="students" fill={colors[0]} />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                            </BarChart><br />
+                        </div>
+                        <div className="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success" onClick={AssignTime}>Generate Today Chart</button>
+                        </div>
                     </div>
                 </div>
             </div >
