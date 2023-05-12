@@ -45,7 +45,7 @@ export default function UpdateLabAppoinment() {
                 setTime(res.data.appTime);
                 setLabTestType(res.data.labTest);
 
-                alert(res.data.first_name)
+                //alert(res.data.first_name)
 
 
             }).catch(function (err) {
@@ -54,6 +54,7 @@ export default function UpdateLabAppoinment() {
             });
         }
         getLabAppoinment();
+        setStatus("pending")
 
     }, []);
 
@@ -226,21 +227,26 @@ export default function UpdateLabAppoinment() {
                 <div class="row">
                     <div className="form-group col-md-6 mt-3 mt-md-0" >
                         <label for="name">Test Category</label>
-                        <input placeholder='Status' className="form-control" value={labTest} onChange={(e) => setStatus(e.target.value)} readOnly />
+                        <input placeholder='Status' className="form-control" value={labTest} readOnly />
                     </div>
                     <div className="form-group col-md-6 mt-3 mt-md-0" >
                         <label for="name">Appoinment No</label>
-                        <input placeholder='Status' className="form-control" value={appNo} onChange={(e) => setStatus(e.target.value)} readOnly />
+                        <input placeholder='Status' className="form-control" value={appNo} readOnly />
                     </div>
                 </div>
                 <div class="row">
                     <div className="form-group col-md-6 mt-3 mt-md-0" >
                         <label for="name">Appoinment Time</label>
-                        <input placeholder='Status' className="form-control" value={appTime} onChange={(e) => setStatus(e.target.value)} readOnly />
+                        <input placeholder='Status' className="form-control" value={appTime} readOnly />
                     </div>
-                    <div className="form-group col-md-6 mt-3 mt-md-0" >
-                        <label for="name">Status</label>
-                        <input placeholder='Status' className="form-control" value={status} onChange={(e) => setStatus(e.target.value)} />
+                    <div className="form-group col-md-6 mt-3 mt-md-0">
+                        <label for="name"><b>Status</b></label>
+                        <select className="form-control" onChange={(e) => setStatus(e.target.value)}>
+                            <option key={"pending"} value={"pending"}>pending</option>
+                            <option key={"unsuccess"} value={"unsuccess"}>unsuccess</option>
+                            <option key={"success"} value={"success"}>success</option>
+                            <option key={"cancel"} value={"cancel"}>Cancel</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center">

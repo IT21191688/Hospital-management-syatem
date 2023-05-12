@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
 import moment from "moment";
+import reportGenerate from "../siteImages/reportGeneratePage.jpg";
 
 
 export default function PrintDoAppoinmentResipt() {
@@ -164,53 +165,63 @@ export default function PrintDoAppoinmentResipt() {
     const colors = ['#FFC107', '#2196F3', '#4CAF50', '#E91E63'];
 
     return (
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div className="bg-success">
-                        <h2><b>Lab Appoinment Details Chart</b></h2><br />
-                        <div className="form-group">
-                            <center>
+        <div style={{
+            backgroundImage: `url( ${reportGenerate})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+            opacity: '1',
+            overflow: "hidden"
+        }}>
+            <div>
+                <div class="row container-md justify-content-center bg-light pt-5 ml-5" style={{ opacity: "0.7", minHeight: "100vh" }}>
+                    <div class="col col-md-5 ml-5 rounded" style={{ background: "#cce6ff" }}>
+                        <div className="ml-5 mt-4">
+                            <h2><b>Lab Appoinment Details Chart</b></h2><br />
+                            <div className="form-group col-md-6 ml-5">
                                 <h3 className="text-primary">Date</h3><br />
-                                <input name="date" type="date" className="form-control  col-md-6" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                            </center>
-                        </div>
-                        <div className="form-group col-md-6 mt-3 mt-md-0">
-                            <label for="name"><b>Report Type</b></label>
-                            <select className="form-control" onChange={e => setReportType(e.target.value)} required>
-                                <option key={"Daily"} value={"Daily"}>Daily</option>
-                                <option key={"Monthly"} value={"Monthly"}>Monthly</option>
-                                <option key={"Yearly"} value={"Yearly"}>Yearly</option>
-                            </select>
-                        </div>
+                                <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
 
-                        <div>
-                            <h3>Appoinment Count</h3><br>
-                            </br>
-                            <h5>Success&nbsp;:{success}</h5>
-                            <h5>Unsucces:{unsuccess}</h5>
-                            <h5>Pending&nbsp;:{pending}</h5>
-                            <h5>cancel&nbsp;:{cancel}</h5>
-                        </div>
-                        <br /><br />
+                            </div>
+                            <div className="form-group col-md-6 mt-3 mt-md-0">
+                                <label for="name"><b>Report Type</b></label>
+                                <select className="form-control" onChange={e => setReportType(e.target.value)} required>
+                                    <option key={"Daily"} value={"Daily"}>Daily</option>
+                                    <option key={"Monthly"} value={"Monthly"}>Monthly</option>
+                                    <option key={"Yearly"} value={"Yearly"}>Yearly</option>
+                                </select>
+                            </div>
 
+                            <div>
+                                <h3>Appoinment Count</h3><br>
+                                </br>
+                                <h5>Success&nbsp;:{success}</h5>
+                                <h5>Unsucces:{unsuccess}</h5>
+                                <h5>Pending&nbsp;:{pending}</h5>
+                                <h5>cancel&nbsp;:{cancel}</h5>
+                            </div>
+                            <br /><br />
+
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="">
-                        <h2>Appoinment Details Chart</h2><br />
-                        <BarChart width={600} height={400} data={data}>
-                            <Bar dataKey="students" fill={colors[0]} />
-                            <CartesianGrid stroke="#ccc" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                        </BarChart><br></br>
+                    <div class="col col-md-5 mr-5 rounded" style={{ background: "#cce6ff" }}>
+                        <div class="">
+                            <h2>Appoinment Details Chart</h2><br />
+                            <BarChart width={600} height={400} data={data}>
+                                <Bar dataKey="students" fill={colors[0]} />
+                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                            </BarChart><br></br>
+                        </div>
+                        <div className="d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
+                        </div>
                     </div>
-                    <div className="d-flex justify-content-center">
-                        <button type="button" class="btn btn-outline-success" onClick={AssignTime}>Generate Today Chart</button>
-                    </div>
-                </div>
-            </div >
+                </div >
+            </div>
         </div >
     );
 } 

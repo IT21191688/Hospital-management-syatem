@@ -53,6 +53,7 @@ export default function UpdateAppoinment() {
             });
         }
         getAppoinment();
+        setStatus("pending");
 
     }, []);
 
@@ -261,9 +262,14 @@ export default function UpdateAppoinment() {
                             <label for="name" className="font-weight-bold">Time</label>
                             <input type="text" className="form-control" value={appTime} onChange={(e) => setStatus(e.target.value)} readOnly />
                         </div>
-                        <div className="form-group form-group col-md-6 mt-3 mt-md-0" >
-                            <label for="name" className="font-weight-bold">Status</label>
-                            <input placeholder='Status' className="form-control" value={status} onChange={(e) => setStatus(e.target.value)} />
+                        <div className="form-group col-md-6 mt-3 mt-md-0">
+                            <label for="name"><b>Status</b></label>
+                            <select className="form-control" onChange={(e) => setStatus(e.target.value)} required>
+                                <option key={"pending"} value={"pending"}>pending</option>
+                                <option key={"unsuccess"} value={"unsuccess"}>unsuccess</option>
+                                <option key={"success"} value={"success"}>success</option>
+                                <option key={"cancel"} value={"cancel"}>Cancel</option>
+                            </select>
                         </div>
 
                     </div>

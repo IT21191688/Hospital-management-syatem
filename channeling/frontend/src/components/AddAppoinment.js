@@ -290,6 +290,13 @@ export default function AddAppoinment() {
         return regex.test(phoneNumber);
     }
 
+    function nicValidation(nic) {
+        var regex = /^([0-9]{9}[V|v|X|x]|[0-9]{12})$/;
+        return regex.test(nic);
+    }
+
+    let [dateValid, setDateValid] = useState(false);
+
     function validateDate(date) {
 
         let todayYear = new Date().getFullYear()
@@ -304,17 +311,32 @@ export default function AddAppoinment() {
         if (todayYear === selectdateYear) {
             if (todayMonth === selectdateMonth) {
                 if (todayDay <= selectedNewDate) {
-
+                    setDateValid(true)
                     return true;
 
+
                 }
+                setDateValid(false)
                 return false;
+
             }
+            setDateValid(false)
             return false;
+
         }
+        setDateValid(false)
         return false;
+
     }
 
+    const [fnameError, setFnameError] = useState("")
+    const [lnameError, setLnameError] = useState("");
+    const [ageError, setageError] = useState("");
+    const [nicError, setnicError] = useState("");
+    const [emailError, setemailError] = useState("");
+    const [phoneError, setphoneError] = useState("");
+    const [dateError, setdateError] = useState("");
+    const [appNoError, setappNoError] = useState("");
 
 
 
@@ -323,72 +345,122 @@ export default function AddAppoinment() {
 
         let fname = document.forms["Addform"]["fname"].value;
         if (fname === "") {
-            alert("first Name must be filled out");
+            // alert("first Name must be filled out");
+            setFnameError("first Name must be filled out");
             return false;
+        } else {
+            setFnameError("");
         }
 
         let lname = document.forms["Addform"]["lname"].value;
         if (lname === "") {
-            alert("Last Name must be filled out");
-
+            //alert("Last Name must be filled out");
+            setLnameError("Last Name must be filled out");
             return false;
+        } else {
+            setFnameError("");
         }
 
         let Lage = document.forms["Addform"]["age"].value;
         if (Lage === "") {
-            alert("age must be filled out");
+            // alert("age must be filled out");
+            setageError("Age must be filled out");
             return false;
+        } else {
+            setageError("");
         }
 
         let Lnic = document.forms["Addform"]["nic"].value;
-        if (Lnic === "") {
-            alert("nic must be filled out");
+        if (!nicValidation(Lnic)) {
+            setnicError("Please Enter a valid NIC number in Sri Lanka format.");
             return false;
-        } else if (Lnic.length !== 12) {
-            alert("nic Must Have 12 digits");
-            return false;
+        } else {
+            setnicError("");
         }
+
+        let Ldate = document.forms["Addform"]["date"].value;
+        if (!validateDate(Ldate)) {
+            alert("You can Only Select Today Or today Onwards");
+            setdateError("You can Only Select Today Or today Onwards");
+            return false;
+        } else {
+            setdateError("");
+        }
+
+
+
+
+
+
+        /*
+        let phoneNumber = document.forms["Addform"]["telephone"].value;
+        if (!validatePhoneNumber(phoneNumber)) {
+
+            //alert("Please enter a valid Sri Lankan mobile number");
+            setphoneError("Please enter a valid Sri Lankan mobile number");
+            return false;
+        } else {
+
+            setphoneError("");
+
+        }
+
+        */
+
+        let phoneNumber = document.forms["Addform"]["telephone"].value;
+        if (!validatePhoneNumber(phoneNumber)) {
+
+            setphoneError("Please enter a valid Sri Lankan mobile number");
+        } else {
+            setphoneError("");
+        }
+
+        /*
+        let Ldate = document.forms["Addform"]["Date"].value;
+        if (!validateDate(Ldate)) {
+            //alert("Date must be filled out Correctly");
+            setdateError("You can Only Select Today Or today Onwards");
+            return false;
+        } else {
+
+            setdateError("")
+
+        }
+        */
 
         let Lemail = document.forms["Addform"]["email"].value;
         if (!isEmailValid(Lemail)) {
 
             if (Lemail === "") {
                 isEmailValid(email)
-                alert("email must be filled out");
+                //alert("email must be filled out");
+                setemailError("email must be filled out");
 
                 return false;
             }
-            alert("Please Enter Email the valid format");
-
+            //alert("Please Enter Email the valid format");
+            setemailError("Please Enter Email the valid format");
             return false;
 
+        } else {
+            setemailError("");
         }
 
 
-        let phoneNumber = document.forms["Addform"]["telephone"].value;
-        if (!validatePhoneNumber(phoneNumber)) {
-
-            alert("Please enter a valid Sri Lankan mobile number");
-
-            return false;
-        }
-
-
-        let Ldate = document.forms["Addform"]["date"].value;
-        if (!validateDate(Ldate)) {
-            alert("Date must be filled out Correctly");
-            return false;
-        }
 
         let LAppNo = document.forms["Addform"]["appoinmentNo"].value;
-        if (LAppNo === "") {
+        if (LAppNo == "") {
             alert("Appoinment No must be filled out");
-
+            setappNoError("Appoinment No must be filled out");
             return false;
+        } else {
+            setappNoError("");
         }
 
-
         return true;
+
+
+
 
     }
 
@@ -499,11 +571,12 @@ export default function AddAppoinment() {
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0 ">
                             <label for="name"><b>First Name</b></label>
                             <input name="fname" type="text" className="form-control is-valid" id="firstName" placeholder="First Name" onChange={function (e) { setFirstName(e.target.value); }} required />
+                            {fnameError && <span className="error" style={{ color: "red" }}>{fnameError}</span>}
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Last Name</b></label>
                             <input name="lname" type="text" className="form-control" id="lastName" placeholder="Last Name" onChange={function (e) { setLastName(e.target.value); }} required />
-
+                            {lnameError && <span className="error" style={{ color: "red" }}>{lnameError}</span>}
                         </div><br />
                     </div>
 
@@ -511,33 +584,47 @@ export default function AddAppoinment() {
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Age</b></label>
                             <input name="age" type="number" className="form-control is-valid" id="age" placeholder="age" onChange={function (e) { setAge(e.target.value); }} required />
+                            {ageError && <span className="error" style={{ color: "red" }}>{ageError}</span>}
                         </div><br />
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>NIC</b></label>
-                            <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
-
+                            <input name="nic" type="text" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            {nicError && <span className="error" style={{ color: "red" }}>{nicError}</span>}
                         </div><br />
                     </div>
 
                     <div class="row">
+
+                        <div className="form-group  col-md-6 mt-3 mt-md-0">
+                            <label for="name"><b>Date</b></label>
+                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                            {dateError && <span className="error" style={{ color: "red" }}>{dateError}</span>}
+                        </div><br />
+
+
+                        <div className="form-group form-group col-md-6 mt-3 mt-md-0 ">
+                            <label for="name"><b>Telephone</b></label>
+                            <input name="telephone" type="tel" className="form-control" id="telephone" placeholder="07XXXXXXXX" onChange={function (e) { setTelephone(e.target.value); }} required />
+                            {phoneError && <span className="error" style={{ color: "red" }}>{phoneError}</span>}
+                        </div><br />
+
+
+                    </div>
+                    <div class="row">
+
                         <div className="form-group form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>E-mail</b></label>
                             <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onChange={function (e) { setEmail(e.target.value); }} required />
+                            {emailError && <span className="error" style={{ color: "red" }}>{emailError}</span>}
                         </div><br />
-                        <div className="form-group form-group col-md-6 mt-3 mt-md-0">
-                            <label for="name"><b>Telephone</b></label>
-                            <input name="telephone" type="number" className="form-control" id="telephone" placeholder="07XXXXXXXX" pattern="[0][0-9]{9}" onChange={function (e) { setTelephone(e.target.value); }} required />
-                        </div><br />
-                    </div>
-                    <div class="row">
-                        <div className="form-group col-md-4 mt-3 mt-md-0">
-                            <label for="name"><b>date</b></label>
-                            <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
-                        </div><br />
-                        <div className="form-group form-group col-md-4 mt-3 mt-md-0">
+
+
+                        <div className="form-group form-group col-md-2 mt-3 mt-md-0">
                             <label for="name"><b>Appoinment No</b></label>
-                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
+                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} required disabled />
+                            {appNoError && <span className="error" style={{ color: "red" }}>{appNoError}</span>}
                         </div><br />
+
                         <div className="form-group col-md-4 mt-3 mt-md-0">
                             <label for="name"><b>Generate Time And Appoinment No</b></label>
                             <button type="button" class="btn btn-outline-primary" onClick={AssignTime}>Generate Appoinment No</button>

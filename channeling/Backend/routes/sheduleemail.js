@@ -6,18 +6,16 @@ const Doctor = require('../models/doctor');
 let Appoinment = require("../models/appoinment");
 const router = express.Router();
 const Chart = require('chart.js/auto');
-
-//pdf generate 
+const pdfMake = require('pdfmake');
+const GoogleChartsNode = require('google-charts-node');
 const { createCanvas } = require('canvas');
-const PDFDocument = require('pdfkit');
+
+//const PDFDocument = require('pdfkit');
+const PDFDocument = require("pdfkit-table");
 const fs = require('fs');
 
 
-
-
-
-
-cron.schedule('0 0 * * *', function () {
+cron.schedule('* * * * *', function () {
     console.log("Shedule Run");
     sheduledEmail();
 });
@@ -37,27 +35,29 @@ const sheduledEmail = async function () {
     const today = new Date();
 
     const y = today.getFullYear();
-    const m = today.getMonth();
+    const m = today.getMonth() + 1;
     const d = today.getDate();
 
     let md;
     let dd;
 
 
+
     if (m < 10) {
 
         md = "0" + m;
 
+    } else {
+        md = m
     }
 
     if (d < 10) {
 
         dd = "0" + d;
 
+    } else {
+        dd = d
     }
-
-
-
 
     const modifiedDate = y + "-" + md + "-" + dd + "T00:00:00.000Z"
 
@@ -78,8 +78,9 @@ const sheduledEmail = async function () {
 
             if (app.doctor_name === doc.doctor_name) {
 
+
                 const AY = app.date.getFullYear();
-                const AM = app.date.getMonth();
+                const AM = app.date.getMonth() + 1;
                 const AD = app.date.getDate();
 
                 let AMD, ADD;
@@ -88,16 +89,20 @@ const sheduledEmail = async function () {
 
                     AMD = "0" + AM;
 
+                } else {
+                    AMD = AM
                 }
-
                 if (d < 10) {
 
                     ADD = "0" + AD;
 
+                } else {
+                    ADD = AD
                 }
 
                 const modifiedAppDate = AY + "-" + AMD + "-" + ADD + "T00:00:00.000Z";
 
+                console.log(modifiedAppDate + " " + modifiedDate)
                 if (modifiedAppDate === modifiedDate) {
 
                     if (app.status === "success") {
@@ -105,13 +110,13 @@ const sheduledEmail = async function () {
                         success++;
 
                     }
-                    else if (app.status === "unsucess") {
+                    else if (app.status === "unsuccess") {
+
 
                         unsuccess++;
 
                     }
                     else if (app.status === "pending") {
-
 
                         pending++;
 
@@ -120,51 +125,90 @@ const sheduledEmail = async function () {
                         cancel++;
                     }
 
-
-
-
                 }
-
-
-
-
             }
 
         }
 
+
+        const canvas = createCanvas(400, 400);
+        const ctx = canvas.getContext('2d');
+
+        // Set up data
+        const data = [success * 30, pending * 30, cancel * 30, unsuccess * 30];
+        const colors = ['#FF6384', '#36A2EB', '#e6ed0e', '#0d31d1'];
+        const labels = ['Success', 'Pending', 'Cancel', 'Unsuccess'];
+
+        // Set up chart dimensions and styling
+        const barWidth = canvas.width / data.length * 0.8;
+        const barSpacing = canvas.width / data.length * 0.2;
+        const maxBarHeight = canvas.height * 0.8;
+        ctx.font = '12px Arial';
+
+        // Draw bars
+        for (let i = 0; i < data.length; i++) {
+            const barHeight = data[i] / 100 * maxBarHeight;
+            const barX = i * (barWidth + barSpacing) + barSpacing / 2;
+            const barY = canvas.height - barHeight;
+            ctx.fillStyle = colors[i];
+            ctx.fillRect(barX, barY, barWidth, barHeight);
+
+            // Draw label
+            const labelX = barX + barWidth / 2;
+            const labelY = canvas.height - maxBarHeight - 10;
+            ctx.fillStyle = 'black';
+            ctx.fillText(labels[i], labelX, labelY);
+        }
+
+        // Save the chart as an image
+        const fs = require('fs');
+        const out = fs.createWriteStream(`Reports/${docName}.png`);
+        const stream = canvas.createPNGStream();
+        stream.pipe(out);
+        await sleep(8000)
+        out.on('finish', () => console.log('The bar chart was saved!'));
+
+
+
+        function sleep(ms) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+                console.log("after 5 sec")
+            });
+        }
+
+
+
+        const outPng = `Reports/${docName}.png`;
 
 
         // create a new PDF document
 
         const document = new PDFDocument();
 
+        document.image(`images/medlogo.png`, {
+            fit: [100, 100],  // set the width and height of the image
+            align: 'left',    // align the image to the left
+            valign: 'top'     // align the image to the top
+        });
 
+        document.fontSize(20).text("Medixo E-Health Pvt.(LTD)", { align: "center", color: "blue", valign: 'top' })
 
-
-        // add some content to the PDF document
-        document.fontSize(18).text('Doctor' + doc.doctor_name, { align: 'center' });
+        document.fontSize(16).text(`Appointments for ${doc.doctor_name} on ${y + "-" + md + "-" + dd}`, { align: 'center' });
         document.moveDown();
 
-        for (let i = 0; i < appoinments.length; i++) {
-            const item = appoinments[i];
+        document.fontSize(15).text(`Today Appoinments`, { align: 'center' })
+        document.moveDown();
 
-            if (appoinments[i].doctor_name === doc.doctor_name) {
+        document.fontSize(13).text(`Success ${success}     Pending: ${pending}     Cancel ${cancel}    Unsuccess:${unsuccess}`)
 
-                if (item.status === 'success') {
-                    document.fontSize(12).fillColor('green').text(`${item.appNo}: ${item.first_name + " " + item.last_name}: ${item.status}`);
-                    document.moveDown();
-                } else if (item.status === 'unsucess') {
-                    document.fontSize(12).fillColor('orange').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
-                    document.moveDown();
-                } else if (item.status === 'pending') {
-                    document.fontSize(12).fillColor('blue').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
-                    document.moveDown();
-                } else {
-                    document.fontSize(12).fillColor('red').text(`${item.appNo}: ${item.first_name + " " + item.last_name}:${item.status}`);
-                    document.moveDown();
-                }
-            }
-        }
+        document.image(outPng)
+
+        document.fontSize(10).text(`This Is the system generated E-mail '${today}`, {
+            align: 'center',
+            valign: 'bottom',
+            color: "black"
+        })
 
         // construct the file name
         const fileName = `Reports/${docName}.pdf`;
@@ -192,8 +236,6 @@ const sheduledEmail = async function () {
             ${unsuccess} was unsuccess and also have ${pending} pending appoinments.\n
             ${cancel} Appoinments Canceled.\n\n\n
             
-
-
             You Have Earned ${success} * 2000 =${success * 2000}
 
             Thank You.\n
@@ -202,10 +244,6 @@ const sheduledEmail = async function () {
 
 
         };
-
-
-
-
 
 
         //send mail
