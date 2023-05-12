@@ -17,8 +17,11 @@ import SearchAppoinment from "./components/SearchAppoinment";
 import GenerateDoctorReport from "./components/GenerateDoctorReport";
 import GenerateLabTestReport from "./components/GenerateLabTestReport";
 import AdminDashboard from "./components/AdminDashboard";
+import HeaderNew from "./components/HeaderNew";
+import Home from "./components/Home";
 
 
+import './header_home.css'
 import './App.css'
 import './JavaSc'
 
@@ -35,13 +38,14 @@ function App() {
 
       <Router>
 
-        <Header />
+        <HeaderNew />
 
         <Routes>
 
           <Route exact path="/appoinment" element={<Appoinements />} />
           <Route exact path="/appoinmentAdmin" element={<AppoinementsAdmin />} />
           <Route exact path="/generateReports" element={<GenerateReports />} />
+          <Route exact path="/home" element={<Home />} />
 
 
           <Route exact path="/AddLabAppoinment" element={<AddLabAppoinment />} />

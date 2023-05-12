@@ -108,6 +108,7 @@ export default function AddLabAppoinment() {
                 console.log(res.data);
                 setAppoinmentDetails(res.data);
 
+
             }).catch(function (err) {
                 alert("data not fech" + err);
             })
@@ -284,33 +285,55 @@ export default function AddLabAppoinment() {
     }
 
 
+    const [fnameError, setFnameError] = useState("")
+    const [lnameError, setLnameError] = useState("");
+    const [ageError, setageError] = useState("");
+    const [nicError, setnicError] = useState("");
+    const [emailError, setemailError] = useState("");
+    const [phoneError, setphoneError] = useState("");
+    const [dateError, setdateError] = useState("");
+    const [appNoError, setappNoError] = useState("");
+    const [categoryError, setCategoryError] = useState("");
+    const [fileError, setfileError] = useState("");
 
     function validateForm() {
 
         let fname = document.forms["Addform"]["fname"].value;
         if (fname === "") {
             alert("first Name must be filled out");
+            setFnameError("first Name must be filled out");
             return false;
+        } else {
+            setFnameError("");
         }
 
         let lname = document.forms["Addform"]["lname"].value;
         if (lname === "") {
             alert("Last Name must be filled out");
+            setLnameError("Last Name must be filled out")
             return false;
+        } else {
+            setLnameError("")
         }
 
         let Lage = document.forms["Addform"]["age"].value;
         if (Lage === "") {
             alert("age must be filled out");
+            setageError("age must be filled out")
             return false;
+        } else {
+            setageError("")
+
         }
 
         let Lnic = document.forms["Addform"]["nic"].value;
         if (Lnic === "") {
             alert("nic must be filled out");
+            setnicError("nic must be filled out")
             return false;
         } else if (Lnic.length !== 12) {
             alert("nic Must Have 12 digits");
+            setnicError("nic Must Have 12 digits")
             return false;
         }
 
@@ -319,11 +342,15 @@ export default function AddLabAppoinment() {
             if (Lemail === "") {
                 isEmailValid(email)
                 alert("email must be filled out");
+                setemailError("email must be filled out");
                 return false;
             }
             alert("Please Enter the valid format");
+            setemailError("email must be filled out");
             return false;
 
+        } else {
+            setemailError("");
         }
 
 
@@ -332,36 +359,52 @@ export default function AddLabAppoinment() {
             if (Ltelephone === "") {
                 //isEmailValid(email)
                 alert("telephone must be filled out");
+                setphoneError("telephone must be filled out")
                 return false;
             }
             alert("Please Enter the valid format");
+            setphoneError("Please Enter the valid format")
             return false;
 
+        } else {
+            setphoneError("")
         }
 
         let Ldate = document.forms["Addform"]["date"].value;
         if (!validateDate(Ldate)) {
-            alert("Date must be filled out Correctly");
+            alert("You can Only Select Today Or today Onwards");
+            setdateError("You can Only Select Today Or today Onwards");
             return false;
+        } else {
+            setdateError("");
         }
 
 
         let LFile = document.forms["Addform"]["formFileMultiple"];
         if (LFile.files.length == 0) {
             alert("File must be filled out");
+            setfileError("File must be filled out");
             return false;
+        } else {
+            setfileError("");
         }
 
         let LTCategory = document.forms["Addform"]["labTestCategory"].value;
         if (LTCategory == "") {
             alert("Please select the Lab test Category");
+            setCategoryError("Please select the Lab test Category")
             return false;
+        } else {
+            setCategoryError("")
         }
 
         let LAppNo = document.forms["Addform"]["appoinmentNo"].value;
         if (LAppNo == "") {
             alert("Appoinment No must be filled out");
+            setappNoError("Appoinment No must be filled out");
             return false;
+        } else {
+            setappNoError("");
         }
 
         return true;
@@ -456,11 +499,13 @@ export default function AddLabAppoinment() {
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>First Name</b></label>
                             <input name="fname" type="text" className="form-control" id="firstName" placeholder="First Name" onChange={function (e) { setFirstName(e.target.value); }} required />
+                            {fnameError && <span className="error" style={{ color: "red" }}>{fnameError}</span>}
                         </div><br />
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Last Name</b></label>
                             <input name="lname" type="text" className="form-control" id="lastName" placeholder="Last Name" onChange={function (e) { setLastName(e.target.value); }} required />
+                            {lnameError && <span className="error" style={{ color: "red" }}>{lnameError}</span>}
                         </div><br />
 
                     </div>
@@ -469,11 +514,13 @@ export default function AddLabAppoinment() {
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Age</b></label>
                             <input name="age" type="number" className="form-control" id="age" placeholder="age" onChange={function (e) { setAge(e.target.value); }} required />
+                            {ageError && <span className="error" style={{ color: "red" }}>{ageError}</span>}
                         </div><br />
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Nic</b></label>
                             <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            {nicError && <span className="error" style={{ color: "red" }}>{nicError}</span>}
                         </div><br />
 
                     </div>
@@ -482,11 +529,13 @@ export default function AddLabAppoinment() {
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>E-mail</b></label>
                             <input name="email" type="email" className="form-control" id="email" placeholder="E-mail" onChange={function (e) { setEmail(e.target.value); }} required />
+                            {emailError && <span className="error" style={{ color: "red" }}>{emailError}</span>}
                         </div><br />
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Telephone</b></label>
                             <input name="telephone" type="text" className="form-control" id="telephone" placeholder="07XXXXXXXXX" onChange={function (e) { setTelephone(e.target.value); }} required />
+                            {phoneError && <span className="error" style={{ color: "red" }}>{phoneError}</span>}
                         </div><br />
 
                     </div>
@@ -495,11 +544,13 @@ export default function AddLabAppoinment() {
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Date</b></label>
                             <input name="date" type="date" className="form-control" id="date" onChange={function (e) { setDate(e.target.value); }} required />
+                            {dateError && <span className="error" style={{ color: "red" }}>{dateError}</span>}
                         </div><br />
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="formFileMultiple" class="form-label"><b>Priscription</b></label>
                             <input class="form-control" type="file" id="formFileMultiple" multiple name="file_path" onChange={handleImage} required />
+                            {fileError && <span className="error" style={{ color: "red" }}>{fileError}</span>}
                         </div><br />
 
                     </div>
@@ -516,11 +567,13 @@ export default function AddLabAppoinment() {
                                 <option key={"FullBloodCount"} value={"FullBloodCount"}>Full Blood Count</option>
                                 <option key={"UrineFR"} value={"UrineFR"}>Urine FR</option>
                             </select>
+                            {categoryError && <span className="error" style={{ color: "red" }}>{categoryError}</span>}
                         </div>
 
                         <div className="form-group form-group col-md-2 mt-3 mt-md-0">
                             <label for="name"><b>Appoinment No</b></label>
-                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} onChange={function (e) { setTelephone(e.target.value); }} required disabled />
+                            <input name="appoinmentNo" type="text" className="form-control" id="appoinmentNo" value={appNo} required disabled />
+                            {appNoError && <span className="error" style={{ color: "red" }}>{appNoError}</span>}
                         </div><br />
 
                         <div className="form-group col-md-4 mt-3 mt-md-0">
@@ -529,6 +582,7 @@ export default function AddLabAppoinment() {
                         </div>
 
                     </div>
+
 
 
                     <div class="row d-flex justify-content-center">

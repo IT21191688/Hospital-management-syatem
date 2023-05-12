@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, NavLink, props } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import jsPdf from 'jspdf';
+import 'jspdf-autotable';
+//import 'react-toastify/dist/react-toastify.css';
+import logo from "../siteImages/medlogo.png";
+
 
 
 export default function ReadAppoinment() {
@@ -71,6 +76,52 @@ export default function ReadAppoinment() {
         return rep.doctor_name.toLowerCase().includes(filterDoc.toLowerCase()) & rep.nic.toLowerCase().includes(filter.toLowerCase()) & rep.date.toLowerCase().includes(filterDat.toLowerCase());
     })
 
+    function generatePdf() {
+
+        const unit = "pt"
+        const size = "A3"
+        const orientation = "portrait"
+
+        const marginLeft = 40;
+        const doc = new jsPdf(orientation, unit, size);
+
+        const imageData = logo
+
+
+
+        doc.setFontSize(15);
+
+        const title = "Appoinment Table"
+
+        const headers = [
+            ["Doctor", "Patient Name", "Nic", "Contact Details", "Date & Time", "Number", "Status"]
+        ];
+
+        const data = filteredReports.map((rep) => [
+            rep.doctor_category + " " + rep.doctor_name,
+            rep.first_name + " " + rep.last_name,
+            rep.nic,
+            rep.email,
+            moment(rep.date).utc().format('YYYY-MM-DD') + " " + rep.appTime,
+            rep.appNo,
+            rep.status
+        ])
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data,
+        }
+        doc.addImage(imageData, "JPEG", 10, 10, 50, 50);
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("AppoinmentReport.pdf");
+        //toast("Item Report Download");
+
+    };
+
+
+
 
 
 
@@ -106,6 +157,11 @@ export default function ReadAppoinment() {
                     <div className="form-group col-md-2 mt-3 mt-md-0">
                         <br />
                         <button type="button" class="btn text-black mt-2 text-light" style={{ background: "#2F4FAA" }} onClick={function () { navigate("/generateReports") }} ><b>Generate charts</b></button>
+                    </div>
+
+                    <div className="form-group col-md-2 mt-3 mt-md-0">
+                        <br />
+                        <button type="button" class="btn text-black mt-2 text-light" style={{ background: "#2F4FAA" }} onClick={function () { generatePdf() }} ><b>Download All details</b></button>
                     </div>
 
                 </div>
