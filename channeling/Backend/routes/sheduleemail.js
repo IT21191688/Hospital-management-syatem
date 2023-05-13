@@ -187,11 +187,11 @@ const sheduledEmail = async function () {
 
         const document = new PDFDocument();
 
-        doc.lineWidth(1);
-        doc.strokeColor('black');
+        document.lineWidth(1);
+        document.strokeColor('black');
 
         // Draw the border
-        doc.rect(72, 72, 468, 648).stroke();
+        document.rect(72, 72, 468, 648).stroke();
 
         document.image(`images/medlogo.png`, {
             fit: [100, 100],  // set the width and height of the image
@@ -207,7 +207,7 @@ const sheduledEmail = async function () {
         document.fontSize(15).text(`Today Appoinments`, { align: 'center' })
         document.moveDown();
 
-        document.fontSize(13).text(`Success ${success}     Pending: ${pending}     Cancel ${cancel}    Unsuccess:${unsuccess}`)
+        document.fontSize(13).text(`           Success ${success}     Pending: ${pending}     Cancel ${cancel}     Unsuccess:${unsuccess}`)
 
         document.image(outPng)
 
