@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts'
 import moment from "moment";
 import reportGenerate from "../siteImages/reportGeneratePage.jpg";
+import appoinmentAdminpgBack from "../siteImages/appoinmentAdminPageBack.jpg";
 
 
 export default function PrintDoAppoinmentResipt() {
@@ -177,7 +178,7 @@ export default function PrintDoAppoinmentResipt() {
 
 
         <div class="" style={{
-            backgroundImage: `url( ${reportGenerate})`,
+            backgroundImage: `url( ${appoinmentAdminpgBack})`,
             backgroundRepeat: 'no-repeat',
             minHeight: '100vh',
             backgroundSize: 'cover',
@@ -186,9 +187,10 @@ export default function PrintDoAppoinmentResipt() {
             opacity: '1',
             overflow: "hidden"
         }}>
+
             <div>
-                <div className="row container-md justify-content-center bg-light pt-5" style={{ opacity: "0.7", minHeight: "100vh" }} >
-                    <div class="col col-md-5 ml-5 rounded" style={{ background: "#cce6ff" }}>
+                <div className="row justify-content-center pt-5" style={{}} >
+                    <div class="col col-md-5 ml-5 rounded" style={{ background: "#cce6ff", opacity: "0.85" }}>
                         <div className="ml-5 mt-4" >
                             <br></br>
                             <h3>Doctor Name: {dname}</h3><br></br>
@@ -223,7 +225,7 @@ export default function PrintDoAppoinmentResipt() {
 
                         </div>
                     </div>
-                    <div class="col rounded mr-5 col-md-5" style={{ background: "#cce6ff" }}>
+                    <div class="col rounded mr-5 col-md-5" style={{ background: "#cce6ff", opacity: "0.85" }}>
                         <div class="mt-5">
                             <h2>Appoinment Details Chart</h2><br />
                             <BarChart width={600} height={400} data={data}>
@@ -236,6 +238,7 @@ export default function PrintDoAppoinmentResipt() {
                         <div className="d-flex justify-content-center">
                             <button type="button" class="btn btn-success" onClick={AssignTime}>Generate Today Chart</button>
                         </div>
+                        <br></br><br></br>
                     </div>
                 </div>
             </div >
