@@ -102,7 +102,8 @@ const sheduledEmail = async function () {
 
                 const modifiedAppDate = AY + "-" + AMD + "-" + ADD + "T00:00:00.000Z";
 
-                console.log(modifiedAppDate + " " + modifiedDate)
+                //console.log(modifiedAppDate + " " + modifiedDate)
+
                 if (modifiedAppDate === modifiedDate) {
 
                     if (app.status === "success") {
@@ -173,7 +174,7 @@ const sheduledEmail = async function () {
         function sleep(ms) {
             return new Promise((resolve) => {
                 setTimeout(resolve, ms);
-                console.log("after 5 sec")
+                //console.log("after 5 sec")
             });
         }
 
@@ -185,6 +186,12 @@ const sheduledEmail = async function () {
         // create a new PDF document
 
         const document = new PDFDocument();
+
+        doc.lineWidth(1);
+        doc.strokeColor('black');
+
+        // Draw the border
+        doc.rect(72, 72, 468, 648).stroke();
 
         document.image(`images/medlogo.png`, {
             fit: [100, 100],  // set the width and height of the image
