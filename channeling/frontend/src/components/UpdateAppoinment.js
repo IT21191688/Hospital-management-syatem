@@ -264,7 +264,7 @@ export default function UpdateAppoinment() {
                         </div>
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Status</b></label>
-                            <select className="form-control" onChange={(e) => setStatus(e.target.value)} required>
+                            <select className="form-control" onChange={(e) => setStatus(e.target.value)} value={status} required>
                                 <option key={"pending"} value={"pending"}>pending</option>
                                 <option key={"unsuccess"} value={"unsuccess"}>unsuccess</option>
                                 <option key={"success"} value={"success"}>success</option>

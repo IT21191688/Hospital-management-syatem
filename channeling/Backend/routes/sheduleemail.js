@@ -7,7 +7,6 @@ let Appoinment = require("../models/appoinment");
 const router = express.Router();
 const Chart = require('chart.js/auto');
 const pdfMake = require('pdfmake');
-const GoogleChartsNode = require('google-charts-node');
 const { createCanvas } = require('canvas');
 
 //const PDFDocument = require('pdfkit');
@@ -15,7 +14,7 @@ const PDFDocument = require("pdfkit-table");
 const fs = require('fs');
 
 
-cron.schedule('* * * * *', function () {
+cron.schedule('0 0 * * *', function () {
     console.log("Shedule Run");
     sheduledEmail();
 });

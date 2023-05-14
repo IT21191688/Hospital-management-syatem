@@ -73,7 +73,7 @@ export default function PrintDoAppoinmentResipt() {
             }}>
                 <header>
                     <div className="input">
-                        <h1>Lab Appoinment Recipt</h1>
+                        <h1>Lab Appoinment Receipt</h1>
                     </div>
                 </header>
                 <section ref={ref} className="container border border-success rounded bg-light" >
@@ -91,10 +91,10 @@ export default function PrintDoAppoinmentResipt() {
                     </div>
                     <div className="title">
                         <div className="row d-flex justify-content-center">
-                            <h2>Lab Appoinment Resipt</h2>
+                            <h2>Lab Appoinment Receipt</h2>
                             <h1 class="border border-warning rounded-circle ml-5 bg-info" style={{ width: "50px" }}>{appNo}</h1>
                         </div>
-                        <h6>(for Hospital Usess)</h6>
+                        <h6>(for Hospital Use)</h6>
 
 
                     </div>
