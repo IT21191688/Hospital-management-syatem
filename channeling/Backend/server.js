@@ -57,7 +57,8 @@ app.use("/labappoinment", labAppoinmentRouter);
 const doctorRouter = require("./routes/doctors.js");
 app.use("/doctor", doctorRouter);
 
-
+const sheduleUpdate = require("./routes/appoinmentAutoup.js");
+app.use("/appinmentAutoup", sheduleUpdate);
 
 
 

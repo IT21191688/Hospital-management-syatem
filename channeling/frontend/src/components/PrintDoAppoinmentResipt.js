@@ -80,7 +80,7 @@ export default function PrintDoAppoinmentResipt() {
                 <header>
                     <div className="mt-3">
                         <center>
-                            <h1 className="text-dark">Doctor Appoinment Recipt</h1>
+                            <h1 className="text-dark">Doctor Appoinment Receipt</h1>
                         </center>
                     </div>
                 </header>
@@ -100,10 +100,10 @@ export default function PrintDoAppoinmentResipt() {
                     </div>
                     <div className="title">
                         <div className="row d-flex justify-content-center">
-                            <h2>Doctor Appoinment Resipt</h2>
+                            <h2>Doctor Appoinment Receipt</h2>
                             <h1 class="border border-warning rounded-circle ml-5 bg-info" style={{ width: "50px" }}>{appNo}</h1>
                         </div>
-                        <h6>(for Hospital Usess)</h6>
+                        <h6>(for Hospital Use)</h6>
 
 
                     </div>

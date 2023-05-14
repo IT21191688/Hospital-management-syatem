@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../siteImages/medlogo.png";
 import successimg from "../siteImages/modal-success.png";
 import unsuccessimg from "../siteImages/model-unsuccess.png";
-import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpg";
+import labAppoinmentpgBack from "../siteImages/labtestpgBack.jpeg";
 import moment from "moment";
 
 export default function AddLabAppoinment() {
