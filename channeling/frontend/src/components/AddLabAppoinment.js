@@ -114,6 +114,7 @@ export default function AddLabAppoinment() {
             })
         }
         getLabAppoinmentDetails();
+        setLabTestType('Creatinine');
 
     }, [])
 
@@ -259,6 +260,16 @@ export default function AddLabAppoinment() {
         return re.test(input)
     }
 
+    function validatePhoneNumber(phoneNumber) {
+        var regex = /^(?:\+94|0)[78]\d{8}$/;
+        return regex.test(phoneNumber);
+    }
+
+    function nicValidation(nic) {
+        var regex = /^([0-9]{9}[V|v|X|x]|[0-9]{12})$/;
+        return regex.test(nic);
+    }
+
     function validateDate(date) {
 
         let todayYear = new Date().getFullYear()
@@ -327,14 +338,11 @@ export default function AddLabAppoinment() {
         }
 
         let Lnic = document.forms["Addform"]["nic"].value;
-        if (Lnic === "") {
-            alert("nic must be filled out");
-            setnicError("nic must be filled out")
+        if (!nicValidation(Lnic)) {
+            setnicError("Please Enter a valid NIC number in Sri Lanka format.");
             return false;
-        } else if (Lnic.length !== 12) {
-            alert("nic Must Have 12 digits");
-            setnicError("nic Must Have 12 digits")
-            return false;
+        } else {
+            setnicError("");
         }
 
         let Lemail = document.forms["Addform"]["email"].value;
@@ -354,6 +362,7 @@ export default function AddLabAppoinment() {
         }
 
 
+        /*
         let Ltelephone = document.forms["Addform"]["telephone"].value;
         if (!validateNumber(Ltelephone)) {
             if (Ltelephone === "") {
@@ -368,6 +377,16 @@ export default function AddLabAppoinment() {
 
         } else {
             setphoneError("")
+        }
+
+        */
+
+        let phoneNumber = document.forms["Addform"]["telephone"].value;
+        if (!validatePhoneNumber(phoneNumber)) {
+
+            setphoneError("Please enter a valid Sri Lankan mobile number");
+        } else {
+            setphoneError("");
         }
 
         let Ldate = document.forms["Addform"]["date"].value;
@@ -490,7 +509,7 @@ export default function AddLabAppoinment() {
                 <button type="button" id="model-btn-unsuccess" data-toggle="modal" data-target="#exampleModalCenterUnsucces"></button>
 
 
-                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}><br />
+                <form name="Addform" method="post" encType="multipart/form-data" className="container was-validated mb-5" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}><br />
 
                     <h3 className="text-primary"><b>Make A Lab Test Appoinments</b></h3>
 
@@ -519,7 +538,7 @@ export default function AddLabAppoinment() {
 
                         <div className="form-group col-md-6 mt-3 mt-md-0">
                             <label for="name"><b>Nic</b></label>
-                            <input name="nic" type="number" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
+                            <input name="nic" type="text" className="form-control" id="nic" placeholder="NIC" onChange={function (e) { setNic(e.target.value); }} required />
                             {nicError && <span className="error" style={{ color: "red" }}>{nicError}</span>}
                         </div><br />
 

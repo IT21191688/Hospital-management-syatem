@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../siteImages/medlogo.png";
 import successimg from "../siteImages/modal-success.png";
 import unsuccessimg from "../siteImages/model-unsuccess.png";
+import appoinmentAdminpgBack from "../siteImages/appoinmentAdminPageBack.jpg";
 
 
 
@@ -115,7 +116,16 @@ export default function UpdateLabAppoinment() {
 
 
 
-        <div className="" style={{ background: "#26CDD1", minHeight: "100vh" }}>
+        <div className="" style={{
+            minHeight: "100vh",
+            backgroundImage: `url( ${appoinmentAdminpgBack})`,
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh',
+            backgroundSize: 'cover',
+            position: 'center',
+            maxWidth: '100%',
+            opacity: "0.9"
+        }}>
 
             <div>
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
@@ -177,7 +187,8 @@ export default function UpdateLabAppoinment() {
 
             </div>
             <h2 className="mt-2">Update Lab Test Appoinment Details</h2>
-            <form className="create-form container mt-4 create-form border border-info rounded p-3 d-up-form" style={{ backgroundColor: "#bbbdbb", borderRadius: '10px', opacity: '0.85' }}>
+            <h4 className="text-success">Patient Name:&nbsp;{first_name + " " + last_name}</h4>
+            <form className="create-form container mt-4 create-form border border-info rounded p-3 d-up-form" style={{ background: "#F7F7F7", opacity: "0.9", borderRadius: '10px' }}>
 
                 <div class="row">
                     <div className="form-group col-md-6 mt-3 mt-md-0" >
